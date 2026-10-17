@@ -18,7 +18,7 @@
 
 Στις 5 Οκτωβρίου συνδέει ρητά αυτή την προσέγγιση με γνωστή software engineering: lint, diagnostics, ποιοτικά tests και observability. [5 Οκτωβρίου 2026](https://x.com/poteto/status/2106916667599278365).
 
-**Εφαρμογή στη διάλεξη:** Οι συμβάσεις που έχουν σημασία γίνονται executable checks. Στη Java αυτό μπορεί να περιλαμβάνει validation σε domain types, compiler checks, στατικούς κανόνες για architecture boundaries και acceptance tests. Το scope check του lab δείχνει τη βασική ιδέα, ενώ η παραγωγή χρειάζεται προστατευμένη policy έξω από τον έλεγχο του candidate.
+**Εφαρμογή στη διάλεξη:** Οι σημαντικές απαιτήσεις γίνονται executable checks. Ο agent επιλέγει ελεύθερα κώδικα, δομή και εργαλεία, και βλέπει τις συνέπειες μέσω compiler feedback και acceptance tests. Η ελευθερία υλοποίησης υποστηρίζεται από σαφείς στόχους και μετρημένη αξιολόγηση.
 
 ## Ο agent χρειάζεται εργαλεία και χάρτη λειτουργιών
 

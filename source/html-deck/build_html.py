@@ -56,7 +56,7 @@ slide(label('Συζήτηση σε ζεύγη · 2 λεπτά')+title('Τι ακ
 
 slide(label('Ticket PRICING-142')+title('Το συμβόλαιο αποδοχής')+cols(
  '<div class="formula"><span class="formula-label">Επιλεξιμότητα</span><strong>subtotal <span>≥</span> 50.00</strong><span class="formula-label">Έκπτωση</span><strong>min(10% × subtotal,<br><span>20.00</span>)</strong></div>',
- rows([('Η έκπτωση στρογγυλοποιείται πρώτη','HALF_UP σε δύο δεκαδικά. Έπειτα αφαιρείται.'),('Η είσοδος έχει σαφή όρια','0 έως 10000. Invalid subtotal προκαλεί IllegalArgumentException.'),('Το API παραμένει ίδιο','BigDecimal αποτέλεσμα με scale 2. Χωρίς νέες εξαρτήσεις.')])
+ rows([('Η έκπτωση στρογγυλοποιείται πρώτη','HALF_UP σε δύο δεκαδικά. Έπειτα αφαιρείται.'),('Η είσοδος έχει σαφή όρια','0 έως 10000. Invalid subtotal προκαλεί IllegalArgumentException.'),('Το API παραμένει ίδιο','BigDecimal αποτέλεσμα με scale 2. Η υλοποίηση επιλέγεται από τον agent.')])
 )+note('Null ή άγνωστο coupon: καμία έκπτωση. strip() και αναγνώριση χωρίς διάκριση πεζών και κεφαλαίων.'))
 
 slide(label('Συμφωνημένα expected results')+title('Τα παραδείγματα ορίζουν την αποδοχή')+
@@ -65,9 +65,9 @@ slide(label('Συμφωνημένα expected results')+title('Τα παραδε�
  ('49.99','STUDENT10','49.99','Κάτω από το όριο'),('50.00','STUDENT10','45.00','Συμπερίληψη ορίου'),('50.05','STUDENT10','45.04','Σειρά στρογγυλοποίησης'),('500.00','STUDENT10','480.00','Cap έκπτωσης'),('100.00','OTHER','100.00','Συμπεριφορά χωρίς έκπτωση')])+'</tbody></table>'+
  '<button class="reveal-button ink" id="show-prices">Αποκάλυψη τιμών '+icon('right')+'</button>','', 'table-slide')
 
-slide(label('Context')+title('Ο agent χρειάζεται τρόπο να ελέγξει')+cols(
+slide(label('Context')+title('Ο agent επιλέγει την υλοποίηση')+cols(
  '<div class="file-tree"><span>production-lab/</span><pre>ticket.md\nAGENTS.md\ndocs/feature-map.md\nsrc/main/.../PriceCalculator.java\nci/evaluate.py</pre></div>',
- rows([('Τι πρέπει να πετύχει','Απαιτήσεις, examples και δημόσιο API.'),('Πώς θα το επαληθεύσει','Feature map, ακριβείς εντολές και πραγματικά reports.'),('Πού επιτρέπεται να δράσει','Απομονωμένο workspace, επιτρεπόμενα paths και όρια.')])
+ rows([('Τι πρέπει να πετύχει','Απαιτήσεις, examples και δημόσιο API.'),('Πώς θα το επαληθεύσει','Feature map, ακριβείς εντολές και πραγματικά reports.'),('Πώς θα υλοποιήσει','Ελεύθερη επιλογή αρχείων, δομής και εργαλείων.')])
 )+note('Η Tan προτείνει κοινά verification tools και ενημερωμένο feature map για κάθε agent.'))
 
 slide(label('Prompt κατανόησης')+title('Η επανεξήγηση προηγείται της αλλαγής')+
@@ -75,7 +75,7 @@ slide(label('Prompt κατανόησης')+title('Η επανεξήγηση πρ
  '<p class="bottom-statement language-choice">Αγγλικά για τις τεχνικές οδηγίες. Η ποιότητα επιβεβαιώνεται με evals.</p><p class="caption">Ίδιο σύντομο instruction: 37 EN / 64 EL tokens με o200k_base. Χωρίς context ή output.</p>','', 'quote-slide')
 
 slide(label('Εργαστήριο 1')+cols(
- title('Το AI υλοποιεί.<br>Εσείς ανοίγετε το PR.')+steps(['Δώστε το ticket και το σχετικό context.','Αλλάξτε μόνο <code>PriceCalculator.java</code>.','Ανοίξτε PR προς το main του δικού σας fork.'])+note('Για checks που δεν εκτέλεσε, ο agent δηλώνει NOT RUN.'),
+ title('Το AI υλοποιεί.<br>Εσείς ανοίγετε το PR.')+steps(['Δώστε το ticket και το σχετικό context.','Αφήστε το AI να επιλέξει αρχεία και υλοποίηση.','Ανοίξτε PR προς το main του δικού σας fork.'])+note('Για checks που δεν εκτέλεσε, ο agent δηλώνει NOT RUN.'),
  timer(5)
 ),'green','exercise')
 
@@ -95,8 +95,8 @@ slide(label('Εργαστήριο 2')+cols(
 
 slide(label('Ανεξάρτητη αξιολόγηση')+title('Ο evaluator εξετάζει το τελικό artifact')+
  '<div class="pipeline simple">'+''.join(f'<div><span>{n:02d}</span><h3>{a}</h3><p>{b}</p></div>' for n,(a,b) in enumerate([
- ('Base commit','Tests και build configuration'),('Candidate','Μόνο η Java κλάση'),('Workspace','Νέα, επαναλήψιμη εκτέλεση'),('Report','Αποτέλεσμα και hashes')],1))+'</div>'+
- '<div class="wide-fact"><strong>500 inputs</strong><p>Oracle σε ακέραια cents μέσα σε ένα property test.</p></div>'+note('Το demo δεν είναι πλήρες sandbox. Σε παραγωγή ο grader και η αναφορά αποτελέσματος χρειάζονται προστατευμένη υποδομή.'))
+ ('Contract','Συμφωνημένα acceptance cases'),('Candidate','Ολόκληρο το project και το build'),('Workspace','Νέα, επαναλήψιμη εκτέλεση'),('Report','Αποτέλεσμα και hashes')],1))+'</div>'+
+ '<div class="wide-fact"><strong>500 inputs</strong><p>Oracle σε ακέραια cents μέσα σε ένα property test.</p></div>'+note('Ο agent επιλέγει την υλοποίηση. Το report επιβεβαιώνει ότι εκτελέστηκαν τα agreed cases στο πλήρες project.'))
 
 slide(label('Αξιολόγηση του evaluator')+title('Θα απέρριπταν οι έλεγχοι ένα γνωστό λάθος;')+cols(
  '<div class="single-metric"><strong>5<span>/5</span></strong><p>επιλεγμένα σφάλματα<br>απορρίφθηκαν</p><small>Η λύση αναφοράς περνά 27/27.</small></div>',
@@ -112,12 +112,12 @@ slide(label('Εξήγηση με αρχές ASD-STE100')+title('Μια εξήγ�
 )+ '<p class="principles">Μία ιδέα ανά πρόταση. Σταθεροί όροι. Αριθμοί και προϋποθέσεις που διατηρούνται.</p>'+note('Το ASD-STE100 αφορά αγγλικά. Εδώ προσαρμόζουμε αρχές σαφήνειας στα ελληνικά. Η σαφήνεια χρειάζεται τεκμήρια.'))
 
 slide(label('Περιγραφή PR από το AI')+title('Το PR συνοψίζει τα τελικά reports')+cols(
- '<div class="pr-example"><h3>PRICING-142: STUDENT10</h3><p>Εφαρμόζει το κουπόνι από 50.00. Στρογγυλοποιεί την έκπτωση πριν την αφαίρεση.</p><p><strong>Έλεγχοι:</strong> 27/27 PASS.<br><strong>Τεκμήρια:</strong> result.json, build.log.<br><strong>AI review:</strong> NOT RUN.</p><p><strong>Όριο:</strong> εξετάστηκε η Java μέθοδος.<br><strong>Revert:</strong> αναίρεση του commit.</p></div>',
+ '<div class="pr-example"><h3>PRICING-142: STUDENT10</h3><p>Εφαρμόζει το κουπόνι από 50.00. Στρογγυλοποιεί την έκπτωση πριν την αφαίρεση.</p><p><strong>Έλεγχοι:</strong> 27/27 PASS.<br><strong>Τεκμήρια:</strong> result.json, build.log.<br><strong>AI review:</strong> NOT RUN.</p><p><strong>Όριο:</strong> εκπαιδευτικό acceptance set.<br><strong>Revert:</strong> αναίρεση του commit.</p></div>',
  '<div class="pr-guidance"><p class="serif">Σύντομο.<br>Συγκεκριμένο.<br>Τεκμηριωμένο.</p><p>Τι αλλάζει και γιατί.<br>Τελικό run και tested SHA.<br>Ευρήματα, όρια και revert.</p></div>'
 )+note('Ενδεικτικό PR μετά από successful evaluation. Στη ζωντανή διαδικασία προσθέτουμε το πραγματικό run URL και SHA.'),'','pr-slide')
 
 slide(label('Εργαστήριο 3')+cols(
- title('Review<br>άλλης ομάδας.')+steps(['Ελέγξτε το τρέχον CI και το scope.','Διαβάστε την εξήγηση μαζί με τα evidence.','Δώστε APPROVE, REQUEST CHANGES ή WAIT.'])+note('Μία αιτιολόγηση με συγκεκριμένο στοιχείο. Αλλάξτε ρόλους.'),
+ title('Review<br>άλλης ομάδας.')+steps(['Ελέγξτε το τρέχον CI και την επίτευξη του στόχου.','Διαβάστε την εξήγηση μαζί με τα evidence.','Δώστε APPROVE, REQUEST CHANGES ή WAIT.'])+note('Μία αιτιολόγηση με συγκεκριμένο στοιχείο. Αλλάξτε ρόλους.'),
  timer(3)
 ),'green','exercise')
 
@@ -138,7 +138,7 @@ slide(label('Merge')+title('Συγχωνεύουμε την αξιολογημέ
 
 slide(label('Lauren Tan / @poteto')+title('Οι πρακτικές που κρατάμε')+
  '<div class="takeaways">'+''.join(f'<div><span>{n:02d}</span><h3>{a}</h3><p>{b}</p></div>' for n,(a,b) in enumerate([
- ('Verification tools','Κάθε agent μπορεί να ασκήσει την πραγματική συμπεριφορά.'),('Hard constraints','Κανόνες μέσα στον κώδικα, στον compiler και στο CI.'),('Επιθεωρήσιμα artifacts','Evidence που διαβάζεται χωρίς replay όλου του run.'),('Συντήρηση του pipeline','Κάθε επαναλαμβανόμενο σφάλμα γίνεται μόνιμος έλεγχος.')],1))+'</div>'+note('Σύνθεση από πρωτογενή posts της Tan. Η εφαρμογή στη Java και στο lab είναι διδακτική πρόταση.'))
+ ('Verification tools','Κάθε agent μπορεί να ασκήσει την πραγματική συμπεριφορά.'),('Σαφείς στόχοι','Executable checks και feedback για κάθε επιλογή.'),('Επιθεωρήσιμα artifacts','Evidence που διαβάζεται χωρίς replay όλου του run.'),('Συντήρηση του pipeline','Κάθε επαναλαμβανόμενο σφάλμα γίνεται μόνιμος έλεγχος.')],1))+'</div>'+note('Σύνθεση από πρωτογενή posts της Tan. Η εφαρμογή στη Java και στο lab είναι διδακτική πρόταση.'))
 
 slide(label('Περαιτέρω αυτοματοποίηση')+title('Το lab μπορεί να γίνει συνεχής κύκλος')+
  '<div class="automation-flow">'+''.join(f'<div class="{"accent-stage" if n in [3,5] else ""}"><span>{n:02d}</span><h3>{a}</h3><p>{b}</p></div>' for n,(a,b) in enumerate([

@@ -9,8 +9,8 @@
 Από το directory που περιέχει το student repo και αυτό το instructor directory:
 
 ```text
-python ai-production-lab/ci/evaluate.py --candidate instructor-assets/reference --trusted ai-production-lab --out reference-reports
-python ai-production-lab/ci/evaluate.py --candidate instructor-assets/mutants/exclusive-threshold --trusted ai-production-lab --out fault-reports
+python ai-production-lab/ci/evaluate_fixture.py --fixture instructor-assets/reference --trusted ai-production-lab --out reference-reports
+python ai-production-lab/ci/evaluate_fixture.py --fixture instructor-assets/mutants/exclusive-threshold --trusted ai-production-lab --out fault-reports
 ```
 
 Η reference πρέπει να περάσει, ενώ κάθε mutant πρέπει να αποτύχει. Η Python εντολή σταματά με exit code 1 όταν το candidate αποτύχει. Αυτό είναι αναμενόμενο για mutants.
@@ -22,3 +22,5 @@ python ai-production-lab/ci/evaluate.py --candidate instructor-assets/mutants/ex
 Στο πακέτο διατηρούνται τα `result.json` ως τεκμήρια της προηγούμενης τοπικής επαλήθευσης. Τα παλιά build logs εξαιρέθηκαν κατά τη μεταφορά. Μία νέα εκτέλεση του evaluator δημιουργεί ξανά `result.json`, `build.log` και JUnit reports. Αν εκκρεμεί το CI στην τάξη, δείξτε ένα ήδη αποθηκευμένο JSON report ενώ το νέο run συνεχίζεται.
 
 Μην συμπεριλάβετε τη reference και τα instructor assets στο student repo πριν από το lab. Η acceptance suite είναι ορατή στο εκπαιδευτικό repo και δεν αποτελεί held-out benchmark. Για μέτρηση μοντέλων χρειάζεται ξεχωριστό task set και περιορισμένη πρόσβαση στα benchmark answers.
+
+Τα source fixtures συντίθενται με το πλήρες project μέσω `evaluate_fixture.py`. Για πραγματικό agent output χρησιμοποιείται `evaluate.py --candidate` με ολόκληρο το repository. Το νέο `python tools/check_lab.py` από το authoring root επαληθεύει και μία λύση με helper, resource, πρόσθετο test και αλλαγή Maven configuration.

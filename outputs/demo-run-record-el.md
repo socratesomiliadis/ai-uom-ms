@@ -7,8 +7,8 @@
 | Ημερομηνία και ώρα | Δημοσίευση και main CI: 18 Οκτωβρίου 2026. Το review rehearsal εκκρεμεί |
 | Demo repo URL | https://github.com/socratesomiliadis/ai-uom-ms-review-demo |
 | PR URL | NOT RUN |
-| Correct main acceptance run | [SUCCESS](https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39071901442), checkout `93255d9828f0d60bd87476dd01b8905380e9a9f8`. Manual run· το PR scope step αναμενόμενα δεν εκτελείται |
-| Bug commit / PR head SHA | Δημοσιευμένο bug branch: `c7ac25cdb30fc4f777e337bd82e03431410ef7ef`. PR δεν έχει ανοίξει ακόμη |
+| Correct main acceptance run | [SUCCESS](https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39073048168), checkout `a6887f63daa940c617b4958e17b3ab10ae57f174`. Πλήρες candidate project με το αναθεωρημένο evaluation flow |
+| Bug commit / PR head SHA | Δημοσιευμένο bug branch: `f6da3998626e47191f4eb65913d981be07315d66`. PR δεν έχει ανοίξει ακόμη |
 | Bug acceptance run URL / result | NOT RUN |
 | Actual CodeRabbit finding URL ή no-finding outcome | NOT RUN |
 | Αναπαραγωγή / έλεγχος του finding | NOT VERIFIED |
@@ -28,4 +28,6 @@
 
 Πριν το μάθημα κράτησε αρχικό και τελικό diff, reports και timestamps. Το locally prepared fixture είναι χειρόγραφο. Το αναμενόμενο finding στο `demo/expected-finding-en.md` δεν είναι αποτέλεσμα CodeRabbit. Το AI repair και η περιγραφή PR αποκτούν αυτή την ιδιότητα μόνο μετά από πραγματική εκτέλεση.
 
-Το template του instructor demo και η τελική περιγραφή του bug PR είναι στα αγγλικά. Η αλλαγή template πέρασε και στα τρία branches, ώστε τα PR diffs να παραμένουν μόνο στη Java κλάση. Το προηγούμενο main CI run παραμένει ιστορικό evidence για το δικό του SHA· δεν είναι νέο run του template commit.
+Το template του instructor demo και η τελική περιγραφή του bug PR είναι στα αγγλικά. Η αλλαγή template πέρασε και στα τρία branches, ώστε το template να είναι κοινό, ανεξάρτητα από την υλοποίηση του PR. Το τρέχον main CI run επιβεβαιώνει την αξιολόγηση του πλήρους project. Το παλιό run `39071901442` παραμένει ιστορικό evidence για το δικό του SHA.
+
+Το prepared fixed branch είναι `391de5814b4beb7ea51ca5f6339b030f1ebebdcf` και περιλαμβάνει το νέο `DiscountRounding.java`. Τα 27/27 αποτελέσματα για αυτό το branch είναι τοπικά· δεν έχει εκτελεστεί repaired PR στο GitHub.

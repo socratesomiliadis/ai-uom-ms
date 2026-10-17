@@ -2,6 +2,8 @@
 
 A 60-minute lecture for Software Engineering Master's students familiar with Java and Jenkins. Teaching materials are Greek; AI prompts are English. The lesson follows a ticket through implementation, automated evaluation, review and merge, then explains further pipeline automation.
 
+The agent may explore and change any project files to meet clear objectives. The evaluator builds the complete candidate, including its helpers, resources, tests and build configuration, and verifies the independently agreed acceptance cases. Implementation choices belong to the agent; acceptance follows measured behavior.
+
 ## Where to work
 
 | Path | Contents |
@@ -56,6 +58,8 @@ python ci/evaluate.py --candidate . --trusted . --mode acceptance --out reports/
 
 The starter is deliberately faulty: legacy tests pass, while full acceptance has five failures in 27 tests. The instructor reference passes 27/27. Java and Python must be available; the Maven Wrapper downloads Maven and dependencies on its first run. Full setup instructions are in the lab README and instructor guide.
 
+Run `python tools/check_lab.py` from the authoring repository to verify the starter, reference, five seeded faults, a multi-file solution with additional tests/resources/build changes, and rejection of a run that skips the required cases. Source-only instructor fixtures can be composed into full projects using `ci/evaluate_fixture.py`; see `instructor-assets/README.md`.
+
 ## Publishing the student lab
 
 This is the complete authoring repository, including instructor solutions. Publish only the contents of `ai-production-lab/` as a separate student repository, without its ignored build folders. The student workflows expect those files at the root of that repository. They intentionally do not run as root workflows in this authoring repository.
@@ -72,6 +76,6 @@ Regenerate speaker notes with `python tools/build_speaker_notes.py`. Optional br
 
 For optional local verification, install `PyYAML` and `jsonschema` into `build/verification-deps` and run `python tools/verify_review_demo.py`. It validates the CodeRabbit config against the published schema, checks correct/bug/fixed candidates and records actual JSON results in `demo/verified-results/`. It requires Java, Python, Git and network access for schema/Maven downloads, and does not call any AI service. The local demo repo must exist first.
 
-Complete `outputs/demo-run-record-el.md` after the real GitHub rehearsal. The expected finding is labeled instructor-authored preparation. No actual CodeRabbit output or live GitHub result is fabricated or bundled. CodeRabbit's current public-repository free offer and setup sources are linked in the setup guide; check them before teaching.
+Complete `outputs/demo-run-record-el.md` after the real GitHub rehearsal. The expected finding is labeled instructor-authored preparation. No actual CodeRabbit output is fabricated. Recorded hosted CI metadata is kept separately from local fixture evidence. CodeRabbit's current public-repository free offer and setup sources are linked in the setup guide; check them before teaching.
 
-The first hosted main acceptance workflow completed successfully: https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39071901442. The three prepared branches are pushed. Install/configure CodeRabbit for the demo repository and open `demo/review-bug` into `main` to begin the actual review rehearsal. No PR or CodeRabbit review has been created by publication.
+The current full-project main acceptance workflow completed successfully: https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39073048168. The three prepared branches are pushed. Install/configure CodeRabbit for the demo repository and open `demo/review-bug` into `main` to begin the actual review rehearsal. No PR or CodeRabbit review has been created by publication.

@@ -4,7 +4,7 @@ Java 17, Maven Wrapper, JUnit 5, GitHub Actions και αντίστοιχο Jenk
 
 ## Γρήγορη διαδρομή φοιτητή
 
-Διαβάστε το συνημμένο `student-lab-el.md`. Δώστε ticket, AGENTS.md, feature map και Java αρχείο στο AI. Ζητήστε υλοποίηση, αλλάξτε μόνο `PriceCalculator.java` και ανοίξτε PR. Διαβάστε το check `ticket-evaluation`, διορθώστε τα failures και ζητήστε ανεξάρτητο review πριν από το merge.
+Διαβάστε το συνημμένο `student-lab-el.md`. Δώστε ticket, AGENTS.md, feature map και Java αρχείο στο AI. Ζητήστε υλοποίηση, αφήστε τον agent να επιλέξει τα αρχεία και την υλοποίηση και ανοίξτε PR. Διαβάστε το check `ticket-evaluation`, διορθώστε τα failures και ζητήστε ανεξάρτητο review πριν από το merge.
 
 Για browser-only συμμετοχή, ο διδάσκων έχει ήδη ανεβάσει το repo στο GitHub. Κάντε δημόσιο fork, ενεργοποιήστε Actions, δημιουργήστε branch, κάντε edit και ανοίξτε PR προς το main του fork σας. Προσθέστε τον συνεργάτη σας ως collaborator αν θέλετε πραγματικό approval στο fork. Το αρχικό main είναι εκπαιδευτικό baseline με σφάλματα, όχι release.
 
@@ -17,7 +17,7 @@ python ci/evaluate.py --candidate . --trusted . --out reports
 
 Σε Unix: `chmod +x mvnw`, `./mvnw -B -ntp test` και `python3 ci/evaluate.py --candidate . --trusted . --out reports`.
 
-Χρειάζεται Java 17+ και Python 3. Ο wrapper κατεβάζει Maven 3.9.9 και dependencies στην πρώτη εκτέλεση. Δεν χρειάζεται dev server. Τα reports και προσωρινά evaluation directories μπαίνουν στο `reports/` και εξαιρούνται από Git. Για local student tests τρέξτε `mvnw test`· ο required evaluator εξετάζει τις trusted δοκιμές και δεν αντιγράφει student tests από το candidate.
+Χρειάζεται Java 17+ και Python 3. Ο wrapper κατεβάζει Maven 3.9.9 και dependencies στην πρώτη εκτέλεση. Δεν χρειάζεται dev server. Τα reports και προσωρινά evaluation directories μπαίνουν στο `reports/` και εξαιρούνται από Git. Το `mvnw test` τρέχει τα tests του project. Ο acceptance evaluator διατηρεί τα πρόσθετα tests και το πλήρες build του candidate και προσθέτει τα ανεξάρτητα contract cases.
 
 ## Προετοιμασία του κοινού CI
 
@@ -43,7 +43,7 @@ git push -u origin main
 
 ## Τι ελέγχει το workflow
 
-Το candidate είναι το PR merge checkout. Η policy είναι το base commit. Ο scope checker τρέχει από την policy και το evaluation workspace παίρνει μόνο το candidate source file πάνω από trusted tests και configuration. Η αξιολόγηση απαιτεί επιτυχή Maven εκτέλεση, μη μηδενικό αριθμό tests και μηδενικά failures, errors και skipped tests. Report: tested checkout SHA, trusted policy SHA, PR head SHA όταν υπάρχει και SHA-256 του Java αρχείου.
+Το candidate είναι ολόκληρο το PR merge checkout. Η υλοποίηση και τα αρχεία επιλέγονται από τον agent. Ο evaluator χτίζει το πλήρες project και προσθέτει τα ανεξάρτητα acceptance cases από το base contract. Τα απαιτούμενα test IDs πρέπει να εμφανίζονται στο αποτέλεσμα και να περνούν. Πρόσθετα tests του candidate επιτρέπονται και εκτελούνται επίσης. Το report δίνει tested checkout SHA, contract SHA, PR head SHA και hashes του project.
 
 Το report καταγράφει τα tests που εκτελέστηκαν. Η αρχική σουίτα έχει 27: 3 legacy και 24 acceptance, από τα οποία ένα περιέχει 500 inputs. Νέα trusted tests μπορούν να αυξήσουν τον αριθμό. Η διάρκεια του report περιλαμβάνει το build και πιθανή πρώτη λήψη dependencies· δεν είναι benchmark κώδικα ή agent.
 
@@ -53,6 +53,6 @@ git push -u origin main
 
 ## Όρια παραγωγής
 
-Το ZIP είναι εκπαιδευτικό project. Δεν περιέχει deployment, authentication, HTTP integration, payment gateway, SAST/SCA ή πλήρες sandbox. Το PR workflow μπορεί να προταθεί ως αλλαγή από το ίδιο PR, άρα ο reviewer πρέπει να ελέγχει το diff. Ακόμη και με trusted tests, ο candidate Java κώδικας εκτελείται στον ίδιο worker. Οι έλεγχοι scope και τα markdown instructions δεν αποτελούν security boundary.
+Το ZIP είναι εκπαιδευτική Java library. Το μάθημα εστιάζει στην ελεύθερη επιλογή υλοποίησης, στα καθαρά acceptance criteria και στα πραγματικά αποτελέσματα. Η αξιολόγηση του demo δεν είναι production sandbox. Η συμπεριφορά για αποδοχή κρίνεται από το ανεξάρτητο contract run.
 
 Για παραγωγή, ο trusted grader και η τελική αναφορά αποτελέσματος ελέγχονται από χωριστή προστατευμένη υποδομή. Ο candidate τρέχει απομονωμένα χωρίς secrets, με resource και network limits. Οι πρόσθετοι έλεγχοι προκύπτουν από το πραγματικό σύστημα και τον κίνδυνο της αλλαγής. Αποφύγετε privileged execution untrusted PR code. [GitHub secure use](https://docs.github.com/en/actions/reference/security/secure-use).

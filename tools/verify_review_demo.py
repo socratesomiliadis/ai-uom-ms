@@ -21,6 +21,9 @@ def git(*args):
     return subprocess.check_output(['git','-C',str(repo),*args],text=True,stderr=subprocess.STDOUT).strip()
 assert git('status','--porcelain')==''
 if not policy.exists():git('worktree','add','--detach',str(policy),'main')
+else:
+    assert subprocess.check_output(['git','-C',str(policy),'status','--porcelain'],text=True)==''
+    subprocess.run(['git','-C',str(policy),'checkout','--detach',git('rev-parse','main')],check=True,capture_output=True)
 result_root=ROOT/'demo/verified-results';result_root.mkdir(exist_ok=True)
 checks={}
 cases=[('main','main','acceptance',0),('bug-legacy','demo/review-bug','legacy',0),('bug','demo/review-bug','acceptance',3),('fixed','demo/review-fixed','acceptance',0)]
@@ -34,16 +37,14 @@ try:
         assert report['tests']==(3 if mode=='legacy' else 27),(name,report)
         assert report['failures']==expected_failures and report['errors']==report['skipped']==0,(name,report)
         assert (run.returncode==0)==(expected_failures==0)
-        if branch!='main':
-            scope=subprocess.run([sys.executable,str(policy/'ci/check_scope.py'),str(repo),git('rev-parse','main')],capture_output=True,text=True)
-            assert scope.returncode==0,scope.stdout
+        assert report['required_tests_observed']==(3 if mode=='legacy' else 27)
+        if name=='fixed':assert 'src/main/java/edu/ai/DiscountRounding.java' in report['candidate_file_sha256']
         target=result_root/name;target.mkdir(exist_ok=True)
         shutil.copy2(out/'result.json',target/'result.json')
         checks[name]={'branch':branch,'command':['python','ci/evaluate.py','--candidate','<demo-repository>','--trusted','<reviewed-main-checkout>','--mode',mode,'--out','<reports>'],**report}
         print(name,report['status'],report['tests'],'tests',report['failures'],'failures',flush=True)
 finally:git('switch','main')
 
-assert git('diff','--name-only','main','demo/review-fixed')=='src/main/java/edu/ai/PriceCalculator.java'
-summary={'date':'2026-10-18','scope':'Local Windows execution only. CodeRabbit review and hosted GitHub CI NOT RUN. Fixtures are handwritten.','configuration_schema':{'url':schema_url,'sha256':hashlib.sha256(schema_bytes).hexdigest(),'valid':True},'java_version':subprocess.check_output(['java','-version'],stderr=subprocess.STDOUT,text=True).splitlines()[0],'checks':checks,'scope_checks':'Both PR branches change only PriceCalculator.java; fixed PR retains the named-constants refactor.'}
+summary={'date':'2026-10-18','scope':'Local Windows execution only. Hosted baseline runs and actual AI reviews are recorded separately. Fixtures are handwritten.','configuration_schema':{'url':schema_url,'sha256':hashlib.sha256(schema_bytes).hexdigest(),'valid':True},'java_version':subprocess.check_output(['java','-version'],stderr=subprocess.STDOUT,text=True).splitlines()[0],'checks':checks,'evaluation_model':'Complete candidate project; fixed fixture uses an additional helper class. Acceptance follows the agreed behavior.'}
 (result_root/'verification-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print('Saved local evidence. No external AI or hosted CI run claimed.')

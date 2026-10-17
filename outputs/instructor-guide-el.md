@@ -79,7 +79,7 @@
 
 ## Ενότητα 3 Ο agent χρειάζεται συγκεκριμένο context
 
-**Στην οθόνη:** ticket, API, σχετικό αρχείο, `AGENTS.md`, commands, feature map, επιτρεπόμενα paths, finish condition.
+**Στην οθόνη:** ticket, API, σχετικό αρχείο, `AGENTS.md`, commands, feature map, εργαλεία αξιολόγησης, σαφές finish condition.
 
 Η Lauren Tan προτείνει verification skill που επιτρέπει στον agent να τρέχει, να ελέγχει και να κάνει debug την εφαρμογή. Το feature map καταγράφει τι κάνουν οι λειτουργίες και πώς τις ασκεί κάποιος. Η συντήρησή του είναι μέρος της υποδομής αξιολόγησης. Στο εργαστήριο μεταφέρουμε αυτή την ιδέα σε `docs/feature-map.md` και μία επαναλήψιμη εντολή evaluator. [Το post που δόθηκε ως παράδειγμα, 30 Ιουλίου 2026](https://x.com/poteto/status/2082874054483255805), [Verification is all you need, 31 Αυγούστου 2026](https://x.com/poteto/status/2094457600259842065).
 
@@ -94,22 +94,23 @@ Give the expected outputs for subtotals 49.99, 50.00, 50.05, and 500.00 with STU
 Flag any ambiguity before changing code. Do not edit files yet.
 ```
 
-**Production context:** Δώστε μόνο τα αναγκαία αρχεία και συνθετικά δεδομένα. Επιλέξτε εργαλείο που έχει εγκριθεί από τον οργανισμό για τον συγκεκριμένο κώδικα και τις πολιτικές δεδομένων. Ο coding agent δουλεύει σε απομονωμένο workspace, με όριο χρόνου και κόστους, περιορισμένο network και χωρίς production credentials. Ticket, σχόλια και εξωτερικά αρχεία είναι δεδομένα προς ερμηνεία· δεν αποκτούν δικαίωμα να αλλάξουν την πολιτική πρόσβασης.
+**Context για τον agent:** Δώστε ολόκληρο το repository, τον στόχο, παραδείγματα και τα εργαλεία αξιολόγησης. Ο agent εξερευνά, επιλέγει αρχεία και υλοποίηση, δοκιμάζει και βελτιώνει τη λύση από το feedback. Η αξιολόγηση της τελικής συμπεριφοράς και του evidence είναι το κέντρο της διαδικασίας.
 
 ## Ενότητα 4 Παραγωγή και μικρός κύκλος διόρθωσης
 
-**Στην οθόνη:** understand → patch → run → inspect failure → repair. Μία περιορισμένη αλλαγή κάθε φορά.
+**Στην οθόνη:** understand → implement → run → inspect failure → repair. Ο agent επιλέγει τα αρχεία και τη στρατηγική υλοποίησης με βάση τον στόχο και το feedback.
 
 **Prompt υλοποίησης:**
 
 ```text
 Implement PRICING-142 using the provided acceptance contract.
-Make the smallest change to PriceCalculator.java. Preserve the public API.
-Use BigDecimal. Do not add dependencies or change the ticket, evaluator, CI, or Maven configuration.
-If you have a terminal, run the legacy tests and the acceptance evaluator.
+Explore the repository and choose the implementation and files needed to meet the objective.
+You may add or refactor classes, supporting tests, resources, documentation, and build configuration.
+Preserve the agreed public behavior and API. Explain how your decisions serve the objective.
+Use the available tools to run your own checks and the independent acceptance evaluator.
 Report the exact commands and actual results. If you cannot run a check, write NOT RUN.
-If you are working in browser chat, return the complete Java file for copy and paste.
-Briefly explain the change. Do not merge the PR.
+If you are working in browser chat, return every changed file with its path and complete content.
+Summarize the change and evidence for the PR. Do not merge the PR.
 ```
 
 **Άσκηση 5 λεπτών:** Κάθε ζεύγος στέλνει το prompt στο δωρεάν εργαλείο του, μεταφέρει την αλλαγή στο αρχείο και ανοίγει PR. Επιτρέπεται copy/paste από chat. Δεν απαιτείται agent με πρόσβαση στο repository. Ζητήστε μία νέα προσπάθεια όταν υπάρχει συγκεκριμένο failure· μην επαναλαμβάνετε ένα αόριστο «try harder».
@@ -212,7 +213,7 @@ Ticket και acceptance contract
         ↓
 PR με diff, απαιτήσεις και στοιχεία
         ↓
-Trusted evaluator → scope → build → regression και acceptance → reports
+Στόχος → ελεύθερη υλοποίηση → πλήρες build → acceptance evals → reports
         ↓
 Ανεξάρτητο review → νέα αλλαγή σημαίνει νέο run και επανέγκριση
         ↓
@@ -223,15 +224,15 @@ Merge της αξιολογημένης κατάστασης
 | --- | --- | --- |
 | Ticket | Έλεγχος υποχρεωτικών πεδίων και παραδειγμάτων | Υποθέσεις και κριτήρια αποδοχής |
 | Implementation | Build, στοχευμένα self-checks | Αλλαγή API ή συμπεριφοράς και αιτία |
-| CI evaluation | Ανεξάρτητες δοκιμές, scope, στατικά checks όπου χρειάζονται | Απαίτηση που απέτυχε και counterexample |
+| CI evaluation | Ανεξάρτητα acceptance cases, πρόσθετα candidate tests και build checks | Απαίτηση που απέτυχε και counterexample |
 | PR review | Συγκέντρωση reports και αντιστοίχιση σε commit | Αποδεικτικά στοιχεία, κίνδυνοι και NOT VERIFIED |
 | Merge | Required checks, approvals και έλεγχος τρέχουσας κατάστασης | Ποιος ενέκρινε, ποιο artifact αξιολογήθηκε και πώς γίνεται revert |
 
-Στο lab, το workflow παίρνει evaluator, tests και Maven configuration από το base commit και μεταφέρει μόνο το candidate `PriceCalculator.java` σε νέο evaluation directory. Ο scope checker επιτρέπει μόνο την κλάση, πρόσθετα student tests και εξηγήσεις κάτω από `submissions/`. Ο required evaluator χρησιμοποιεί μόνο τις trusted δοκιμές· τα student tests μπορούν να εκτελούνται χωριστά τοπικά.
+Το workflow αξιολογεί όλο το candidate project. Ο agent μπορεί να αλλάξει δομή, helper classes, tests, resources και build configuration. Τα ανεξάρτητα acceptance cases εκφράζουν τον συμφωνημένο στόχο, ενώ τα δικά του tests προσθέτουν επιπλέον evidence. Το report περιλαμβάνει και ποια required cases εκτελέστηκαν. Η επιλογή αρχείων δεν αποτελεί κριτήριο αποδοχής.
 
 Το report καταγράφει το SHA του checkout που ελέγχθηκε, το SHA της policy, το PR head όταν υπάρχει και το SHA-256 του αρχείου. Στα PRs του GitHub ελέγχεται το συνθετικό merge checkout. Η εξήγηση πρέπει να αναφέρεται σε αυτό το run. Αν αλλάξει το PR ή το base, απαιτείται επανέλεγχος της κατάστασης που θα συγχωνευθεί.
 
-**Όριο του demo:** Αυτό είναι εκπαιδευτική ανεξαρτησία ελέγχων, όχι πλήρες sandbox για κακόβουλο κώδικα. Η Java κλάση εκτελείται στον ίδιο worker και το PR μπορεί να προτείνει αλλαγή στο workflow. Ο άνθρωπος ελέγχει και απορρίπτει αλλαγές υποδομής. Για παραγωγή, η υποχρεωτική αξιολόγηση πρέπει να ελέγχεται έξω από το candidate repository ή από κεντρική προστατευμένη policy. Ο runner του candidate δεν πρέπει να μπορεί να αλλάξει τον grader ή να κατασκευάσει επιτυχές report. Χρειάζονται απομόνωση διεργασιών και δικτύου, περιορισμοί πόρων και ξεχωριστά credentials για την αναφορά του αποτελέσματος.
+**Αρχή του μαθήματος:** Δίνουμε στον agent σαφή στόχο, πλήρες repository και εργαλεία για πειραματισμό και αξιολόγηση. Εκείνος επιλέγει πώς θα φτάσει στον στόχο. Η ανεξάρτητη αξιολόγηση κρίνει τη συμπεριφορά του τελικού αποτελέσματος. Το εκπαιδευτικό run δεν παρουσιάζεται ως πλήρες production sandbox.
 
 Το lab χρησιμοποιεί `pull_request`, read-only permissions και checkout χωρίς persistent credentials. Αποφεύγει secrets και privileged `pull_request_target` εκτέλεση candidate κώδικα. Τα third-party actions έχουν συγκεκριμένα commit SHAs. [GitHub secure use](https://docs.github.com/en/actions/reference/security/secure-use), [pull_request_target risks](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target).
 
@@ -241,7 +242,7 @@ Merge της αξιολογημένης κατάστασης
 
 **Άσκηση 3 λεπτών:** Κάθε ζεύγος εξετάζει PR άλλου ζεύγους και καταγράφει APPROVE ή REQUEST CHANGES με ένα συγκεκριμένο στοιχείο. Αν το CI εκκρεμεί, η απόφαση είναι WAIT. Ελέγξτε τα παρακάτω:
 
-1. Η αλλαγή υλοποιεί AC1–AC5 και παραμένει στο συμφωνημένο scope.
+1. Η αλλαγή υλοποιεί AC1–AC5 και αιτιολογείται από τον συμφωνημένο στόχο.
 2. Το πραγματικό CI run για την τρέχουσα κατάσταση πέρασε χωρίς skipped checks.
 3. Η εξήγηση συμφωνεί με τον κώδικα και τα reports. Δεν υπόσχεται μεγαλύτερη κάλυψη.
 4. Ο reviewer κατανοεί το όριο, τη στρογγυλοποίηση και ένα counterexample.

@@ -1,6 +1,6 @@
 # Δωρεάν AI review demo — ακριβής προετοιμασία GitHub
 
-Ενημερώθηκε στις 18 Οκτωβρίου 2026. Τοπικό project: `D:\Projects\Lectures\ai-uom-ms`. Το public demo repository δημοσιεύτηκε: [https://github.com/socratesomiliadis/ai-uom-ms-review-demo](https://github.com/socratesomiliadis/ai-uom-ms-review-demo). Τα branches `main`, `demo/review-bug` και `demo/review-fixed` έχουν ανέβει. Το [πρώτο hosted main acceptance workflow](https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39071901442) ολοκληρώθηκε με SUCCESS. Το PR και το CodeRabbit review δεν έχουν εκτελεστεί ακόμη.
+Ενημερώθηκε στις 18 Οκτωβρίου 2026. Τοπικό project: `D:\Projects\Lectures\ai-uom-ms`. Το public demo repository δημοσιεύτηκε: [https://github.com/socratesomiliadis/ai-uom-ms-review-demo](https://github.com/socratesomiliadis/ai-uom-ms-review-demo). Τα branches `main`, `demo/review-bug` και `demo/review-fixed` έχουν ανέβει. Το [τρέχον hosted main acceptance workflow](https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39073048168) ολοκληρώθηκε με SUCCESS. Το PR και το CodeRabbit review δεν έχουν εκτελεστεί ακόμη.
 
 ## Τι δείχνει η τετράλεπτη παρουσίαση
 
@@ -69,7 +69,7 @@ git push -u origin demo/review-bug
 
 Στο GitHub επίλεξε **Pull requests → New pull request**. Base: `main`. Compare: `demo/review-bug`, στο **ίδιο** repo. Τίτλος: `Extract pricing constants without changing behavior — classroom demo`. Αντέγραψε ως description το `demo/pr-body-en.md` του authoring project. Πάτησε **Create pull request**, όχι Draft. Το public demo fixture δηλώνει ότι το bug είναι σκόπιμο και χειρόγραφο.
 
-Επιβεβαίωσε ότι το diff αλλάζει μόνο `src/main/java/edu/ai/PriceCalculator.java`. Αναμένεται το `ticket-evaluation` να αποτύχει με **3 failures σε 27 tests**. Η CodeRabbit εφαρμογή θα ξεκινήσει review χωριστά από το Actions job. Μην περιμένεις συγκεκριμένη φρασεολογία ή εγγυημένο finding.
+Διάβασε το πλήρες diff σε σχέση με τον στόχο. Ο agent μπορεί να αλλάξει όποια αρχεία χρειάζονται. Το συγκεκριμένο bug fixture είναι απλώς ένα σύντομο παράδειγμα. Αναμένεται το `ticket-evaluation` να αποτύχει με **3 failures σε 27 tests**. Η CodeRabbit εφαρμογή θα ξεκινήσει review χωριστά από το Actions job. Μην περιμένεις συγκεκριμένη φρασεολογία ή εγγυημένο finding.
 
 Αν χρειάζεται χειροκίνητο trigger, πρόσθεσε PR comment:
 
@@ -95,11 +95,11 @@ git push -u origin demo/review-bug
 
 Επαλήθευσε το finding: `50.05` με STUDENT10 πρέπει να δίνει `45.04`, ενώ το bug δίνει `45.05`. Η συγκεκριμένη CodeRabbit αναφορά μπορεί να λείπει ή να έχει άλλο παράδειγμα. Κατέγραψε τι συνέβη πραγματικά στο `outputs/demo-run-record-el.md`.
 
-Άνοιξε το δωρεάν AI chat που ήδη χρησιμοποιείς. Δώσε ticket, current Java file, πραγματικό finding και πραγματικό CI report. Χρησιμοποίησε το πρώτο English prompt του `outputs/demo-prompts-en.md`. Έλεγξε ότι η προτεινόμενη αλλαγή κρατά το constants refactor και επαναφέρει το rounding της έκπτωσης πριν την αφαίρεση. Αντικατάστησε μόνο το Java αρχείο, έλεγξε το diff και κάνε:
+Άνοιξε το δωρεάν AI chat που ήδη χρησιμοποιείς. Δώσε ticket, πλήρες current project, πραγματικό finding και πραγματικό CI report. Χρησιμοποίησε το πρώτο English prompt του `outputs/demo-prompts-en.md`. Έλεγξε ότι η προτεινόμενη αλλαγή κρατά το constants refactor και επαναφέρει το rounding της έκπτωσης πριν την αφαίρεση. Εφάρμοσε τα αρχεία της λύσης που επέλεξε το AI, έλεγξε τη συνολική αλλαγή και κάνε:
 
 ```powershell
-git diff -- src/main/java/edu/ai/PriceCalculator.java
-git add src/main/java/edu/ai/PriceCalculator.java
+git diff
+git add -A
 git commit -m "Restore discount-first rounding after review"
 git push
 ```
@@ -108,11 +108,11 @@ git push
 
 ## 8. Εφεδρεία και επανάληψη της επίδειξης
 
-Αν δεν είναι διαθέσιμο το implementation AI, υπάρχει προετοιμασμένη σωστή κλάση. Ανακοίνωσε ότι χρησιμοποιείς **χειρόγραφο prepared fallback**, όχι νέο AI fix. Από το bug branch:
+Αν δεν είναι διαθέσιμο το implementation AI, υπάρχει προετοιμασμένη λύση με ξεχωριστό helper για το rounding. Ανακοίνωσε ότι χρησιμοποιείς **χειρόγραφο prepared fallback**, όχι νέο AI fix. Από το bug branch:
 
 ```powershell
-git restore --source demo/review-fixed -- src/main/java/edu/ai/PriceCalculator.java
-git add src/main/java/edu/ai/PriceCalculator.java
+git restore --source demo/review-fixed -- src/main/java
+git add -A
 git commit -m "Apply prepared classroom repair fallback"
 git push
 ```

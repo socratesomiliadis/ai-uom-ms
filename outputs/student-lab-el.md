@@ -28,7 +28,7 @@ public static BigDecimal calculate(BigDecimal subtotal, String coupon)
 | AC2 Κουπόνι | `strip()` στα άκρα και αναγνώριση χωρίς διάκριση πεζών/κεφαλαίων. Null, κενό και άγνωστο κουπόνι σημαίνουν καμία έκπτωση. Η locale δεν αλλάζει τη συμπεριφορά. |
 | AC3 Επιλεξιμότητα | Το STUDENT10 εφαρμόζεται όταν subtotal >= 50.00. |
 | AC4 Υπολογισμός | Έκπτωση 10%, με cap 20.00. Στρογγυλοποίηση της έκπτωσης με HALF_UP σε δύο δεκαδικά, και μετά αφαίρεση. |
-| AC5 Αποτέλεσμα και scope | Output scale 2, ίδια API, χωρίς νέες εξαρτήσεις. Οι υπάρχουσες συμπεριφορές χωρίς έκπτωση διατηρούνται. |
+| AC5 Αποτέλεσμα και API | Output scale 2, ίδια API, με τις υποστηρικτικές αλλαγές που επιλέγει ο agent. Οι υπάρχουσες συμπεριφορές χωρίς έκπτωση διατηρούνται. |
 
 Πριν εκτελέσετε κώδικα, συμπληρώστε τις προβλέψεις σας:
 
@@ -44,6 +44,8 @@ public static BigDecimal calculate(BigDecimal subtotal, String coupon)
 
 Διαβάστε `ticket.md`, `AGENTS.md`, `docs/feature-map.md` και `src/main/java/edu/ai/PriceCalculator.java`. Σε browser chat, δώστε το περιεχόμενό τους ως context. Μην στείλετε κώδικα ή δεδομένα από ιδιωτικό πραγματικό project.
 
+Αυτά είναι σημεία εκκίνησης. Δώστε στο AI πρόσβαση σε όλο το εκπαιδευτικό repository, όπου το εργαλείο το υποστηρίζει. Σε browser chat επισυνάψτε το lab ZIP ή δώστε επιπλέον αρχεία που χρειάζεται, όπως `pom.xml` και tests. Ο agent επιλέγει ποια αρχεία θα εξερευνήσει και θα αλλάξει.
+
 ```text
 Read the provided ticket, AGENTS.md, feature map, and PriceCalculator.java.
 Restate the acceptance contract in six short sentences.
@@ -57,25 +59,26 @@ Flag any ambiguity before changing code. Do not edit files yet.
 
 ```text
 Implement PRICING-142 using the provided acceptance contract.
-Make the smallest change to PriceCalculator.java. Preserve the public API.
-Use BigDecimal. Do not add dependencies or change the ticket, evaluator, CI, or Maven configuration.
-If you have a terminal, run the legacy tests and the acceptance evaluator.
+Explore the repository and choose the implementation and files needed to meet the objective.
+You may add or refactor classes, supporting tests, resources, documentation, and build configuration.
+Preserve the agreed public behavior and API. Explain how your decisions serve the objective.
+Use the available tools to run your own checks and the independent acceptance evaluator.
 Report the exact commands and actual results. If you cannot run a check, write NOT RUN.
-If you are working in browser chat, return the complete Java file for copy and paste.
-Briefly explain the change. Do not merge the PR.
+If you are working in browser chat, return every changed file with its path and complete content.
+Summarize the change and evidence for the PR. Do not merge the PR.
 ```
 
-Στη browser διαδρομή, δημιουργήστε δημόσιο fork του εκπαιδευτικού repo, ενεργοποιήστε Actions στο fork και δημιουργήστε branch `pricing-142`. Ανοίξτε το Java αρχείο, επιλέξτε Edit και αντικαταστήστε το περιεχόμενο με την προτεινόμενη αλλαγή. Κάντε commit στο branch και ανοίξτε PR **προς το main του δικού σας fork**. Ελέγξτε το base repository πριν πατήσετε Create pull request. Έτσι κάθε ομάδα έχει ξεχωριστό κύκλο CI και merge.
+Στη browser διαδρομή, δημιουργήστε δημόσιο fork του εκπαιδευτικού repo, ενεργοποιήστε Actions στο fork και δημιουργήστε branch `pricing-142`. Χρησιμοποιήστε Edit ή το github.dev editor για να εφαρμόσετε όλα τα αρχεία της προτεινόμενης λύσης, προσθέτοντας νέα όπου χρειάζεται. Κάντε commit στο branch και ανοίξτε PR **προς το main του δικού σας fork**. Ελέγξτε το base repository πριν πατήσετε Create pull request. Έτσι κάθε ομάδα έχει ξεχωριστό κύκλο CI και merge.
 
 Αν χρησιμοποιείτε το κοινό repo του διδάσκοντα, ακολουθήστε το branch naming που σας έδωσε και ζητήστε review από τον εξουσιοδοτημένο reviewer. Μην κάνετε merge ή push απευθείας στο main.
 
 ## Βήμα 3 Διαβάστε τον evaluator
 
-Στο PR επιλέξτε το check `ticket-evaluation`. Διαβάστε το step «Run trusted tests on the candidate class» και το summary. Από το Actions run μπορείτε να κατεβάσετε το artifact με `result.json`, `build.log` και JUnit XML.
+Στο PR επιλέξτε το check `ticket-evaluation`. Διαβάστε το step «Evaluate the complete candidate project» και το summary. Από το Actions run μπορείτε να κατεβάσετε το artifact με `result.json`, `build.log` και JUnit XML.
 
-Το report περιλαμβάνει PASS ή FAIL, αριθμό tests, failures, errors, skipped tests, διάρκεια, SHA της αξιολογημένης κατάστασης και hash του Java αρχείου. Η διάρκεια αφορά build και tests, όχι τον χρόνο παραγωγής κώδικα από το AI. Ένα fail μπορεί να είναι λανθασμένο αποτέλεσμα, compiler error ή timeout. Αναζητήστε την πραγματική αιτία στο `build.log`.
+Το report περιλαμβάνει PASS ή FAIL, αριθμό tests, failures, errors, skipped tests, required cases που εκτελέστηκαν, διάρκεια, SHA της αξιολογημένης κατάστασης και hashes του πλήρους candidate project. Η διάρκεια αφορά build και tests, όχι τον χρόνο παραγωγής κώδικα από το AI. Ένα fail μπορεί να είναι λανθασμένο αποτέλεσμα, compiler error ή timeout. Αναζητήστε την πραγματική αιτία στο `build.log`.
 
-Ο evaluator χρησιμοποιεί ελέγχους και build configuration από το base commit. Η αλλαγή σας δεν μπορεί να χαλαρώσει τις acceptance assertions μέσω του κανονικού source-only βήματος. Η υποδομή είναι εκπαιδευτική και ο reviewer ελέγχει ότι δεν αλλάξατε workflow ή evaluator. Δεν αποτελεί πλήρη προστασία από κακόβουλη εκτέλεση.
+Ο evaluator εξετάζει το πλήρες project και τρέχει τα agreed acceptance cases ανεξάρτητα από τις επιλογές υλοποίησης. Ο agent μπορεί να αναδιοργανώσει αρχεία και να αλλάξει tests ή build configuration. Αξιολογούμε αν η συνολική αλλαγή επιτυγχάνει τον στόχο, μαζί με τα πραγματικά αποτελέσματα και την εξήγησή της.
 
 **Αρχικό παράδειγμα:** Ο κώδικας του starter περνά 3/3 legacy tests. Ο πλήρης evaluator εντοπίζει 5 failures σε 27 tests. Αν το δικό σας candidate περάσει, διαβάστε το baseline report που δίνει ο διδάσκων και εξηγήστε τις διαφορές.
 
@@ -88,9 +91,10 @@ Briefly explain the change. Do not merge the PR.
 ```text
 The independent evaluator reports 45.05 for subtotal 50.05 with STUDENT10.
 The acceptance contract requires 45.04 because the discount must be rounded before subtraction.
-Use the provided code and report to identify the mismatch.
-Fix only PriceCalculator.java. Do not change expected values, the ticket, or the evaluator.
-Explain the fix using this exact example. Rerun checks if you can; otherwise write NOT RUN.
+Use the provided repository and report to diagnose the mismatch.
+Choose the changes, files, and tools needed to restore the agreed behavior.
+Explain the fix using this example and verify the complete updated project.
+Report actual results and remaining uncertainty. If you cannot run a check, write NOT RUN.
 ```
 
 Κάντε νέο commit στο ίδιο branch. Περιμένετε το νέο run. Μια προηγούμενη πράσινη ένδειξη δεν τεκμηριώνει νέο commit. Αν το αποτέλεσμα παραμένει FAIL, καταγράψτε το· μην αλλάξετε το κριτήριο για να περάσει.
@@ -116,7 +120,7 @@ Do not invent executed checks or results. Summarize decisions and evidence, with
 
 - Εφαρμόζονται τα κριτήρια, ειδικά 50.00, 50.05 και cap 20.00;
 - Πέρασε το πλήρες check για την τρέχουσα κατάσταση;
-- Αλλάχθηκε κάτι έξω από το επιτρεπόμενο scope;
+- Πώς συμβάλλει η συνολική αλλαγή στον συμφωνημένο στόχο;
 - Είναι αληθείς οι ισχυρισμοί της εξήγησης;
 - Μπορείτε να εξηγήσετε ένα worked example χωρίς νέα βοήθεια από AI;
 
@@ -147,7 +151,7 @@ chmod +x mvnw
 python3 ci/evaluate.py --candidate . --trusted . --mode acceptance --out reports
 ```
 
-Η πρώτη εκτέλεση του wrapper κατεβάζει Maven και dependencies. Το `mvnw test` τρέχει τα υπάρχοντα local tests. Ο evaluator δημιουργεί νέο workspace και τρέχει trusted legacy και acceptance tests. Στην τοπική εντολή `--trusted .` η ανεξαρτησία βασίζεται στο ότι δεν αλλάζετε τη σουίτα· στο CI η policy προέρχεται από ξεχωριστό base checkout.
+Η πρώτη εκτέλεση του wrapper κατεβάζει Maven και dependencies. Το `mvnw test` τρέχει τα local tests. Το acceptance run χτίζει ολόκληρο το candidate project και προσθέτει τα agreed contract cases. Για ανεξάρτητη σύγκριση δώστε στο `--trusted` το reviewed contract checkout. Στο GitHub γίνεται αυτόματα ξεχωριστό base checkout.
 
 ## Η συνέχεια μετά το βασικό εργαστήριο
 

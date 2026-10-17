@@ -13,16 +13,18 @@
 | Baseline acceptance | 27 tests, 5 αναμενόμενα failures, 0 errors, 0 skipped |
 | Λύση αναφοράς | 27/27 PASS, 0 errors, 0 skipped |
 | Πέντε seeded faults | Και τα πέντε απορρίφθηκαν. Δεν είναι PIT mutation score ή γενικό ποσοστό αξιοπιστίας |
+| Ελευθερία υλοποίησης | 28/28 PASS σε candidate με νέο helper, πρόσθετο test, resource και αλλαγή Maven build. Τα 27 απαιτούμενα contract cases εκτελέστηκαν |
+| Έλεγχος εκτέλεσης contract | Candidate με Maven skipTests απορρίφθηκε: 0/27 απαιτούμενα cases, παρότι το Maven επέστρεψε exit 0 |
 | Property test | 500 προκαθορισμένα τυχαία inputs με ανεξάρτητο oracle σε ακέραια cents, μέσα σε ένα test |
 | Instructor demo main / repaired PR | 27/27 PASS και στις δύο καταστάσεις, σε νέα τοπική εκτέλεση |
-| Instructor demo bug PR | Legacy 3/3 PASS, acceptance 3 failures σε 27 tests. Διατηρείται μόνο η επιτρεπόμενη Java αλλαγή |
+| Instructor demo bug PR | Legacy 3/3 PASS, acceptance 3 failures σε 27 tests. Η πολυαρχειακή διόρθωση αξιολογείται ως πλήρες project |
 | CodeRabbit config | Επαληθεύτηκε με το επίσημο JSON schema. Το review στο GitHub παραμένει NOT RUN |
 | GitHub Actions | YAML, triggers, read-only permissions και action commit pins ελέγχθηκαν. Το acceptance check `ticket-evaluation` εκτελεί πάντα acceptance. Το `legacy-demo` είναι ξεχωριστό demonstration check |
 | HTML | 28 διαφάνειες, χωρίς JavaScript errors ή εξωτερικά network requests. Ελέγχθηκαν πλοήγηση, notes, overview, answer reveals, rounding toggle και timers |
 | Γραμματοσειρές | Ενσωματωμένα Noto Sans και Noto Serif, ελεγμένη κάλυψη των ελληνικών χαρακτήρων του deck και φόρτωση όλων των fonts |
 | PDFs | Παρουσίαση 28 σελίδων και πρόταση μίας σελίδας A4. Έγινε οπτικός έλεγχος κάθε σελίδας |
 
-Οι Java εκτελέσεις έγιναν σε Windows με JDK 21.0.9 και compilation target 17. Το GitHub workflow ζητά Temurin 17. Το instructor demo repo [https://github.com/socratesomiliadis/ai-uom-ms-review-demo](https://github.com/socratesomiliadis/ai-uom-ms-review-demo) έχει δημοσιευτεί και το [hosted main acceptance workflow](https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39071901442) πέρασε. Το student repository παραμένει προς δημοσίευση. CodeRabbit review, bug PR, repaired PR και Jenkins run δεν έχουν εκτελεστεί ακόμη.
+Οι Java εκτελέσεις έγιναν σε Windows με JDK 21.0.9 και compilation target 17. Το GitHub workflow ζητά Temurin 17. Το instructor demo repo [https://github.com/socratesomiliadis/ai-uom-ms-review-demo](https://github.com/socratesomiliadis/ai-uom-ms-review-demo) έχει δημοσιευτεί και το [hosted main acceptance workflow](https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39073048168) πέρασε. Το student repository παραμένει προς δημοσίευση. CodeRabbit review, bug PR, repaired PR και Jenkins run δεν έχουν εκτελεστεί ακόμη.
 
 ## Πριν από το μάθημα
 
@@ -36,9 +38,9 @@
 
 Το Jenkinsfile είναι εκπαιδευτικό ισοδύναμο για disposable Linux worker με JDK 17, Python 3 και Git. Δεν χρειάζεται εγκατάσταση Jenkins για το μάθημα. Όποιος επιλέξει Jenkins πρέπει να δοκιμάσει εκεί την πρόσβαση στο reviewed base commit και τη δημοσίευση των reports.
 
-## Όρια που εξηγούνται στους φοιτητές
+## Τι εξηγείται στους φοιτητές
 
-Το βασικό lab χρησιμοποιεί άνθρωπο ως reviewer. Το instructor demo προετοιμάζει αυτόματο CodeRabbit PR review και GitHub tests, με χειροκίνητο handoff προς implementation AI. Το πλήρως αυτόνομο repair και το production auto-merge παρουσιάζονται ως επόμενο βήμα. Η suite είναι ορατή εκπαιδευτική αξιολόγηση και όχι held-out benchmark. Η αντιγραφή trusted tests σε νέο directory απομονώνει το oracle από τις επιτρεπόμενες αλλαγές του lab, αλλά δεν αποτελεί πλήρες sandbox για κακόβουλο κώδικα. Στην παραγωγή χρειάζονται προστατευμένη υποδομή αξιολόγησης και κατάλληλη merge policy.
+Το student lab και το instructor demo δίνουν στον agent ελευθερία επιλογής αρχείων και υλοποίησης. Η ανεξάρτητη αξιολόγηση χτίζει το πλήρες candidate project, προσθέτει τα agreed contract cases και ελέγχει την εκτέλεσή τους. Το PR review και το CI είναι αυτόματα, με χειροκίνητο implementation handoff στο demo. Η παραγωγική αυτονομία αυξάνεται με μετρημένο ιστορικό ποιότητας.
 
 Τα αγγλικά χρησιμοποιούνται ως πρακτική προεπιλογή. Η ποιότητα ανά γλώσσα εξαρτάται από μοντέλο, task και context· δεν διδάσκεται καθολική υπεροχή των αγγλικών. Η ελληνική εξήγηση δανείζεται αρχές σαφήνειας από το ASD-STE100 και δεν παρουσιάζεται ως πιστοποιημένη εφαρμογή του αγγλικού προτύπου.
 
@@ -48,3 +50,5 @@
 Το `build/ai-review-demo` και το portable `ai-review-demo.bundle` έχουν σωστό main, branch με seeded rounding regression και prepared repair branch. Δες το `github-demo-setup-el.md` για δημοσίευση, εγκατάσταση CodeRabbit, branch protection και το rehearsal. Τοπικά αποτελέσματα και ακριβείς εντολές ελέγχου αποθηκεύονται στο `demo/verified-results/verification-summary.json`. Αυτά δεν είναι live CodeRabbit findings ή GitHub runs.
 
 Πριν τη διάλεξη συμπλήρωσε το `demo-run-record-el.md` με actual URLs, SHAs, πραγματικό review outcome και χρόνο υπηρεσιών. Κατέβασε τα CI artifacts εντός μίας ημέρας. Το τετράλεπτο demo χρησιμοποιεί προανοιγμένο πραγματικό rehearsal run ώστε η τάξη να μη χρειάζεται να περιμένει όλο το latency. Αν δεν υπάρχει ανεξάρτητος reviewer, δεν δείχνουμε πραγματικό merge.
+
+Τα πρόσθετα τοπικά αποτελέσματα βρίσκονται στο `instructor-assets/verified-results/free-agent-checks.json`. Η πραγματική επιτυχία του αναθεωρημένου hosted main αποθηκεύεται χωριστά στο `demo/verified-results/hosted-main.json`.

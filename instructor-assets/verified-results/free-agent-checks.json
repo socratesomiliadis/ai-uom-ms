@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-18",
+  "checks": {
+    "legacy": {
+      "status": "PASS",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 3,
+      "required_tests_observed": 3,
+      "project_sha256": "9c201edc2fa48e3fb5b28ef52f00432f7145d8b2a35b5b004307ad4da6535bfa"
+    },
+    "baseline": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 5,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 27,
+      "required_tests_observed": 27,
+      "project_sha256": "9c201edc2fa48e3fb5b28ef52f00432f7145d8b2a35b5b004307ad4da6535bfa"
+    },
+    "reference": {
+      "status": "PASS",
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 27,
+      "required_tests_observed": 27,
+      "project_sha256": "c3e27defefea5255e1f1a48e952d817fc189d0f4c1b7443c1ca4a8261d33767e"
+    },
+    "exclusive-threshold": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 27,
+      "required_tests_observed": 27,
+      "project_sha256": "0581c4bb6ec5994ccfd84ffa3d2d8a237a2d7b5c19b94e38f4bdf9dd1e1c90a0"
+    },
+    "missing-discount-cap": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 27,
+      "required_tests_observed": 27,
+      "project_sha256": "12481075207996b64423d809426a906ec30a197a9d2e3ed7c47aff8482afe310"
+    },
+    "missing-normalization": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 27,
+      "required_tests_observed": 27,
+      "project_sha256": "1ff3a4175f5b1ef0742cad57a2dca129f21349f26f9f03f4a51e36f0a4c2f701"
+    },
+    "missing-validation": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 27,
+      "required_tests_observed": 27,
+      "project_sha256": "a73acbb5c201dcabc01c7191f26a5dc0fd4db8d6e3d8793e54f88ba1a2559421"
+    },
+    "round-payable-instead-of-discount": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 27,
+      "required_tests_observed": 27,
+      "project_sha256": "ce850b11b3b0d8a08938310f862c436abe10a10dabe01fa8205cb6a45100bcdc"
+    },
+    "multi-file-resources-build": {
+      "status": "PASS",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 27,
+      "required_tests_observed": 27,
+      "project_sha256": "434d8287eac3a8bd0bd76d92b8d00fce96e77f4479fcd9837c83721a1f5bdd62"
+    },
+    "missing-required-cases": {
+      "status": "FAIL",
+      "tests": 0,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "required_tests": 27,
+      "required_tests_observed": 0,
+      "project_sha256": "d9f6eef18b21449f6d89ef90aa39793bdb2f682b7d18cb347aa6921a1d0ec978"
+    }
+  }
+}

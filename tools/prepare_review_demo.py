@@ -31,6 +31,11 @@ the GitHub App, not an API key or a workflow. It reviews open PRs automatically.
 The instructor passes a valid finding to a free implementation chat and commits
 the fix manually. CI reruns; an AI can summarize the final actual evidence.
 Merge stays under human control. This is not an autonomous repair/merge agent.
+
+The implementation agent may explore and change any project files to meet the
+objective. The evaluator builds the complete candidate project, including its
+helpers, resources, tests and build configuration, and verifies the independently
+agreed acceptance cases. The prepared repair uses a separate rounding helper.
 ''', encoding='utf-8')
 
 def git(*args):
@@ -45,12 +50,12 @@ try:
     git('update-index', '--chmod=+x', 'mvnw')
     git('commit', '-m', 'Prepare correct pricing baseline and free PR reviewer configuration')
     git('switch', '-c', 'demo/review-bug')
-    shutil.copy2(ROOT / 'demo/fixtures/bug' / source, dest / source)
-    git('add', source.as_posix())
+    shutil.copytree(ROOT / 'demo/fixtures/bug', dest, dirs_exist_ok=True)
+    git('add', '-A')
     git('commit', '-m', 'Introduce deliberate rounding regression for classroom review')
     git('switch', '-c', 'demo/review-fixed')
-    shutil.copy2(ROOT / 'demo/fixtures/fixed' / source, dest / source)
-    git('add', source.as_posix())
+    shutil.copytree(ROOT / 'demo/fixtures/fixed', dest, dirs_exist_ok=True)
+    git('add', '-A')
     git('commit', '-m', 'Restore discount-first rounding for prepared fallback')
     git('switch', 'main')
     bundle = ROOT / 'outputs/ai-review-demo.bundle'

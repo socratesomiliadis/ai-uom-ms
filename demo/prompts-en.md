@@ -7,13 +7,13 @@ All instructions to AI tools are English. Provide the actual ticket, final code 
 ```text
 Read the supplied ticket, current PriceCalculator.java, actual CI report,
 and the review finding. Check whether the finding is valid before changing code.
-If valid, make the smallest fix to PriceCalculator.java. Preserve the public API
-and keep the intended extraction of named pricing constants.
-Do not change tests, expected values, the ticket, CI, or dependencies.
+If valid, choose the implementation and project changes needed to meet the objective.
+You may refactor, introduce helpers, update tests, resources, or build configuration.
+Preserve the agreed behavior, public API, and intended named pricing constants.
 Explain the violated requirement with a concrete expected-versus-actual example.
 If the finding is unsupported, explain the missing evidence instead of forcing a fix.
 If you have a terminal, rerun the acceptance evaluator and report actual results.
-If you cannot run it, write NOT RUN and return the complete corrected Java file.
+If you cannot run it, write NOT RUN and return each changed file with its path and content.
 Do not merge or claim a successful CI run you have not observed.
 ```
 
@@ -21,7 +21,7 @@ Do not merge or claim a successful CI run you have not observed.
 
 ```text
 Write a concise final PR description in English, at most 120 words.
-Use only the supplied final diff, ticket, real CI reports, and actual review finding.
+Use the supplied final diff, ticket, real CI reports, and actual review finding as evidence.
 State the behavior restored and why the change is needed.
 Include one worked example, the actual final run URL, tested checkout SHA,
 and PR head SHA when supplied. Preserve the distinction between these SHAs.

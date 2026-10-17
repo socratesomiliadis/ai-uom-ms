@@ -82,15 +82,15 @@
 
 **10-13 λεπτά.**
 
-«Ο agent χρειάζεται το ticket, το δημόσιο API και τον κώδικα που σχετίζεται με την αλλαγή. Χρειάζεται επίσης να ξέρει πώς τρέχει η αξιολόγηση και ποια αρχεία επιτρέπεται να αλλάξει.
+«Ο agent χρειάζεται το ticket, το δημόσιο API και πρόσβαση στο repository. Χρειάζεται επίσης να ξέρει πώς τρέχει η αξιολόγηση, ώστε να επιλέγει ελεύθερα αρχεία και υλοποίηση με χρήσιμο feedback.
 
 Η Lauren Tan, γνωστή ως poteto, δίνει μεγάλη σημασία σε verification tools. Η ιδέα είναι να δίνουμε στον agent τα ίδια χρήσιμα σήματα και εργαλεία που χρησιμοποιεί ένας engineer. Αν το πρόβλημα αφορά UI, ο agent πρέπει να μπορεί να ασκήσει το συγκεκριμένο flow. Αν αφορά τη Java μέθοδο τιμολόγησης, πρέπει να μπορεί να καλέσει τη μέθοδο και να εξετάσει τα αποτελέσματά της.
 
 Ο feature map περιγράφει τις λειτουργίες, πώς τις ασκούμε και τι αποτέλεσμα τεκμηριώνει ότι λειτουργούν. Δεν χρειάζεται να είναι τεράστιος. Στο lab είναι ένας μικρός χάρτης απαιτήσεων και ελέγχων.
 
-Το AGENTS.md καθοδηγεί τη δουλειά. Οι περιορισμοί που έχουν σημασία για αποδοχή ή ασφάλεια πρέπει να επιβάλλονται και από το περιβάλλον ή από ελέγχους. Μια πρόταση σε Markdown δεν δίνει από μόνη της απομόνωση ή προστασία credentials.
+Το AGENTS.md καταγράφει τον στόχο και τα διαθέσιμα εργαλεία αξιολόγησης. Ο agent εξερευνά το repository, επιλέγει ποια αρχεία θα αλλάξει και χρησιμοποιεί το feedback για να βελτιώσει τη λύση. Η αποδοχή βασίζεται στη συμπεριφορά που συμφωνήσαμε και στα πραγματικά αποτελέσματα του πλήρους project.
 
-Εδώ ο agent αλλάζει μία κλάση. Στην παραγωγή θα δίναμε απομονωμένο workspace, συγκεκριμένα permissions, όριο χρόνου και κόστους και μόνο τα δεδομένα που χρειάζονται. Η οργάνωση αυτού του context και των εργαλείων είναι επένδυση που ωφελεί κάθε επόμενο PR.»
+Εδώ το σημείο εισόδου είναι μια Java μέθοδος. Ο agent μπορεί να εξερευνήσει όλο το repository και να επιλέξει helpers, tests, resources ή αλλαγές στο build. Δεν του δίνουμε βήματα για κάθε αρχείο. Του δίνουμε τον στόχο, παραδείγματα αποδοχής και εργαλεία για να ελέγξει το αποτέλεσμα. Αυτή η οργάνωση context και evals ωφελεί κάθε επόμενο PR.»
 
 **Ενέργεια:** Δείξε το file tree και τα αρχεία του lab. Αν υπάρχει χρόνος, άνοιξε το feature map χωρίς να διαβάσεις ολόκληρο το περιεχόμενο.
 
@@ -121,7 +121,7 @@ Flag any ambiguity before changing code. Do not edit files yet.
 
 «Τώρα ο ένας από το ζεύγος χειρίζεται το AI και ο άλλος ελέγχει το συμβόλαιο. Δώστε στο εργαλείο το context που έχει οριστεί. Μετά χρησιμοποιήστε το αγγλικό prompt υλοποίησης του lab.
 
-Το AI πρέπει να αλλάξει μόνο το PriceCalculator.java, να διατηρήσει το API και να μην αλλάξει την αξιολόγηση για να περάσει. Αν έχει terminal, μπορεί να τρέξει τα checks. Αν δουλεύετε σε browser chat, θα σας επιστρέψει το πλήρες αρχείο και θα δηλώσει NOT RUN για όσα δεν εκτέλεσε.
+Το AI επιλέγει ποια αρχεία και ποια υλοποίηση χρειάζονται για τον στόχο, διατηρώντας το συμφωνημένο API και τη συμπεριφορά. Αν έχει terminal, χρησιμοποιεί τα εργαλεία αξιολόγησης. Στο browser chat επιστρέφει κάθε αλλαγμένο αρχείο με το path και το περιεχόμενό του. Δηλώνει NOT RUN για όσα δεν εκτέλεσε.
 
 Εσείς κάνετε την αλλαγή στο branch σας και ανοίγετε PR προς το main του δικού σας fork. Ελέγξτε το base repository πριν το δημιουργήσετε. Θα έχετε πέντε λεπτά. Ο σκοπός είναι να φτάσουμε σε μια πραγματική υποβολή που το CI μπορεί να αξιολογήσει, όχι να τελειώσουν όλες οι ομάδες ταυτόχρονα.»
 
@@ -129,12 +129,13 @@ Flag any ambiguity before changing code. Do not edit files yet.
 
 ```text
 Implement PRICING-142 using the provided acceptance contract.
-Make the smallest change to PriceCalculator.java. Preserve the public API.
-Use BigDecimal. Do not add dependencies or change the ticket, evaluator, CI, or Maven configuration.
-If you have a terminal, run the legacy tests and the acceptance evaluator.
+Explore the repository and choose the implementation and files needed to meet the objective.
+You may add or refactor classes, supporting tests, resources, documentation, and build configuration.
+Preserve the agreed public behavior and API. Explain how your decisions serve the objective.
+Use the available tools to run your own checks and the independent acceptance evaluator.
 Report the exact commands and actual results. If you cannot run a check, write NOT RUN.
-If you are working in browser chat, return the complete Java file for copy and paste.
-Briefly explain the change. Do not merge the PR.
+If you are working in browser chat, return every changed file with its path and complete content.
+Summarize the change and evidence for the PR. Do not merge the PR.
 ```
 
 **Κατά τη δραστηριότητα:** Κυκλοφόρησε στα ζεύγη. Βοήθησε με GitHub setup μόνο όπου μπλοκάρει την υποβολή. Αν δεν υπάρχει διαθέσιμο AI quota, η ομάδα χρησιμοποιεί το starter και προχωρά στην αξιολόγηση. Αν όλα τα prompts παράγουν σωστή λύση, το αρχικό λανθασμένο candidate παραμένει διαθέσιμο για τη συζήτηση.
@@ -184,9 +185,10 @@ Briefly explain the change. Do not merge the PR.
 ```text
 The independent evaluator reports 45.05 for subtotal 50.05 with STUDENT10.
 The acceptance contract requires 45.04 because the discount must be rounded before subtraction.
-Use the provided code and report to identify the mismatch.
-Fix only PriceCalculator.java. Do not change expected values, the ticket, or the evaluator.
-Explain the fix using this exact example. Rerun checks if you can; otherwise write NOT RUN.
+Use the provided repository and report to diagnose the mismatch.
+Choose the changes, files, and tools needed to restore the agreed behavior.
+Explain the fix using this example and verify the complete updated project.
+Report actual results and remaining uncertainty. If you cannot run a check, write NOT RUN.
 ```
 
 **Αν το CI εκκρεμεί:** Δώσε στην ομάδα το αποθηκευμένο baseline report. Το pending δεν αντιμετωπίζεται ως PASS. Μην περιμένεις μέχρι να ολοκληρωθούν όλα τα runs για να συνεχίσεις.
@@ -197,13 +199,13 @@ Explain the fix using this exact example. Rerun checks if you can; otherwise wri
 
 «Ας δούμε ποιος αποφασίζει το αποτέλεσμα. Ο author agent μπορεί να γράψει tests και να τα τρέξει. Αυτό βοηθά την ταχύτητα του repair. Για την αποδοχή θέλουμε μια σουίτα που δεν ελέγχεται από την ίδια αλλαγή.
 
-Στο lab, τα tests και το Maven configuration έρχονται από το base commit. Το evaluator μεταφέρει μόνο την candidate Java κλάση σε νέο directory και εκτελεί τη συγκεκριμένη σουίτα. Τα reports λένε τι εξετάστηκε και σε ποια κατάσταση.
+Στο lab αξιολογείται ολόκληρο το candidate project, με το δικό του build, helpers, resources και tests. Τα agreed acceptance cases προστίθενται από το ανεξάρτητο contract checkout. Ελέγχουμε και ότι εκτελέστηκαν τα required cases. Έτσι ο agent επιλέγει πώς θα υλοποιήσει τον στόχο και τα reports δείχνουν αν το αποτέλεσμα τον ικανοποιεί.
 
 Υπάρχει επίσης ένας oracle που υπολογίζει το expected result σε ακέραια cents. Χρησιμοποιεί άλλη αναπαράσταση της ίδιας απαίτησης. Για 500 καθορισμένα inputs συγκρίνουμε την έξοδο της πραγματικής Java μεθόδου και ελέγχουμε χρήσιμες ιδιότητες, όπως scale δύο και έκπτωση έως 20.00.
 
 Τα 500 inputs είναι μέσα σε ένα test. Δεν είναι 500 tickets και δεν είναι 500 ανεξάρτητα trials ενός μοντέλου. Το μέγεθος του sample πρέπει πάντα να συνοδεύει την ερμηνεία της μέτρησης.
 
-Η προστασία εδώ είναι εκπαιδευτική. Για production χρειάζεται ο candidate να μην μπορεί να αλλάξει τον grader, τα credentials ή την τελική αναφορά αποτελέσματος. Ένα φρέσκο directory στον ίδιο worker δεν είναι πλήρες sandbox.»
+Η επιλογή υλοποίησης ανήκει στον agent. Η αξία των evals είναι ότι μπορούμε να ελέγξουμε την πλήρη αλλαγή με συγκεκριμένα, συμφωνημένα κριτήρια.»
 
 ## 13 Αξιολόγηση των ίδιων των ελέγχων
 
@@ -265,7 +267,7 @@ Explain the fix using this exact example. Rerun checks if you can; otherwise wri
 
 **45-48 λεπτά.**
 
-«Αλλάζετε τώρα ρόλους και εξετάζετε PR άλλης ομάδας. Ελέγξτε το πραγματικό CI για την τρέχουσα κατάσταση, το scope και τη συμφωνία της εξήγησης με τα evidence.
+«Αλλάζετε τώρα ρόλους και εξετάζετε PR άλλης ομάδας. Ελέγξτε το πραγματικό CI για την τρέχουσα κατάσταση, την επίτευξη του στόχου και τη συμφωνία της εξήγησης με τα evidence.
 
 Η απόφασή σας είναι APPROVE, REQUEST CHANGES ή WAIT. Θέλω μία σύντομη αιτιολόγηση με συγκεκριμένο στοιχείο. Αν το check εκκρεμεί, WAIT. Αν το αποτέλεσμα στο 50.00 είναι λάθος, εξηγήστε ποια απαίτηση παραβιάζει.
 
@@ -365,7 +367,7 @@ Explain the fix using this exact example. Rerun checks if you can; otherwise wri
 
 «Το βασικό takeaway είναι ότι η δουλειά του engineer μεταφέρεται στην κατασκευή και συντήρηση ενός αξιόπιστου AI pipeline.
 
-Ο engineer ορίζει απαιτήσεις και χτίζει τα tests, τους περιορισμούς, το AI review, τις διαδικασίες repair και τον τρόπο παραγωγής τεκμηριωμένων PRs. Αυτό το σύστημα μπορεί να παραδίδει πολλές συνήθεις αλλαγές με ελάχιστη ανθρώπινη επιθεώρηση κώδικα.
+Ο engineer ορίζει σαφείς στόχους και χτίζει τα tests, τα εργαλεία αξιολόγησης, το AI review, τις διαδικασίες repair και τον τρόπο παραγωγής τεκμηριωμένων PRs. Ο agent επιλέγει ελεύθερα την υλοποίηση. Αυτό το σύστημα μπορεί να παραδίδει πολλές συνήθεις αλλαγές με ελάχιστη ανθρώπινη επιθεώρηση κώδικα.
 
 Ο στόχος είναι λιγότερος ανθρώπινος χρόνος ανά merge, με ποιότητα που συνεχίζουμε να μετράμε. Όταν ένα σφάλμα ξεφύγει, το μετατρέπουμε σε γνώση και μόνιμο έλεγχο. Έτσι η ανθρώπινη προσοχή πηγαίνει στις σημαντικές αποφάσεις και στις εξαιρέσεις.»
 
