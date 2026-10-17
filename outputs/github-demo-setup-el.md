@@ -104,7 +104,7 @@ git commit -m "Restore discount-first rounding after review"
 git push
 ```
 
-Το νέο push στο ίδιο branch ενημερώνει το ίδιο PR. Περίμενε το **νέο** acceptance run και review. Μόνο μετά από πραγματικό PASS χρησιμοποίησε το δεύτερο prompt για την τελική περιγραφή PR. Δώσε actual run URL, `tested_checkout_sha` και `pr_head_sha` από το report. Το tested checkout στο PR μπορεί να είναι synthetic merge SHA και να διαφέρει από το head SHA. Κάνε edit το PR description και επαλήθευσε τους ισχυρισμούς του.
+Το νέο push στο ίδιο branch ενημερώνει το ίδιο PR. Περίμενε το **νέο** acceptance run και review. Μόνο μετά από πραγματικό PASS χρησιμοποίησε το δεύτερο prompt για την τελική περιγραφή PR στα αγγλικά. Το title και το description του instructor demo παραμένουν αγγλικά. Δώσε actual run URL, `tested_checkout_sha` και `pr_head_sha` από το report. Το tested checkout στο PR μπορεί να είναι synthetic merge SHA και να διαφέρει από το head SHA. Κάνε edit το PR description και επαλήθευσε τους ισχυρισμούς του.
 
 ## 8. Εφεδρεία και επανάληψη της επίδειξης
 
@@ -132,3 +132,5 @@ git push
 ## Κριτήριο ολοκλήρωσης της προετοιμασίας
 
 Έχεις σωστό demo main με PASS, bug PR με πραγματικό FAIL, πραγματικό review outcome, διορθωμένο ίδιο PR με φρέσκο PASS, τελική ακριβή περιγραφή και συμπληρωμένο run record. Αν θα δείξεις merge, έχεις και ανεξάρτητο approval. Χωρίς αυτά, παρουσίασε το demo ως τοπική προετοιμασία, όχι ως ήδη εκτελεσμένο GitHub workflow.
+
+Το `.github/pull_request_template.md` του δημοσιευμένου instructor demo είναι πλέον αγγλικό. Το ξεχωριστό student lab διατηρεί το ελληνικό εκπαιδευτικό template του.

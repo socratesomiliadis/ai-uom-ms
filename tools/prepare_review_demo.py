@@ -17,6 +17,7 @@ shutil.copytree(ROOT / 'ai-production-lab', dest, dirs_exist_ok=True, ignore=ign
 source = Path('src/main/java/edu/ai/PriceCalculator.java')
 shutil.copy2(ROOT / 'instructor-assets/reference' / source, dest / source)
 shutil.copy2(ROOT / 'demo/.coderabbit.yaml', dest / '.coderabbit.yaml')
+shutil.copy2(ROOT / 'demo/pr-body-en.md', dest / '.github/pull_request_template.md')
 (dest / 'README.md').write_text('''# Instructor AI review demo
 
 This is the separate instructor demo for the AI software engineering lecture.

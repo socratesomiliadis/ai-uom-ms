@@ -1,6 +1,6 @@
 # Instructor demo prompts
 
-All instructions to AI tools are English. Provide the actual ticket, final code or diff, reports, and review finding as separate context. The requested PR description can be Greek.
+All instructions to AI tools are English. Provide the actual ticket, final code or diff, reports, and review finding as separate context. The demo PR title and description must also remain English.
 
 ## Repair a reviewed finding
 
@@ -20,7 +20,7 @@ Do not merge or claim a successful CI run you have not observed.
 ## Final PR description after the fresh run
 
 ```text
-Write a concise final PR description in Greek, at most 120 words.
+Write a concise final PR description in English, at most 120 words.
 Use only the supplied final diff, ticket, real CI reports, and actual review finding.
 State the behavior restored and why the change is needed.
 Include one worked example, the actual final run URL, tested checkout SHA,

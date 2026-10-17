@@ -8,7 +8,7 @@
 | Demo repo URL | https://github.com/socratesomiliadis/ai-uom-ms-review-demo |
 | PR URL | NOT RUN |
 | Correct main acceptance run | [SUCCESS](https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39071901442), checkout `93255d9828f0d60bd87476dd01b8905380e9a9f8`. Manual run· το PR scope step αναμενόμενα δεν εκτελείται |
-| Bug commit / PR head SHA | Δημοσιευμένο bug branch: `676fffd91dbd2150e7a065a0883c5eb9c98f61d9`. PR δεν έχει ανοίξει ακόμη |
+| Bug commit / PR head SHA | Δημοσιευμένο bug branch: `c7ac25cdb30fc4f777e337bd82e03431410ef7ef`. PR δεν έχει ανοίξει ακόμη |
 | Bug acceptance run URL / result | NOT RUN |
 | Actual CodeRabbit finding URL ή no-finding outcome | NOT RUN |
 | Αναπαραγωγή / έλεγχος του finding | NOT VERIFIED |
@@ -27,3 +27,5 @@
 | Τοποθεσία αποθηκευμένων screenshots / artifacts | NOT SAVED |
 
 Πριν το μάθημα κράτησε αρχικό και τελικό diff, reports και timestamps. Το locally prepared fixture είναι χειρόγραφο. Το αναμενόμενο finding στο `demo/expected-finding-en.md` δεν είναι αποτέλεσμα CodeRabbit. Το AI repair και η περιγραφή PR αποκτούν αυτή την ιδιότητα μόνο μετά από πραγματική εκτέλεση.
+
+Το template του instructor demo και η τελική περιγραφή του bug PR είναι στα αγγλικά. Η αλλαγή template πέρασε και στα τρία branches, ώστε τα PR diffs να παραμένουν μόνο στη Java κλάση. Το προηγούμενο main CI run παραμένει ιστορικό evidence για το δικό του SHA· δεν είναι νέο run του template commit.
