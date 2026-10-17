@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-18",
+  "scope": "Local Windows execution only. CodeRabbit review and hosted GitHub CI NOT RUN. Fixtures are handwritten.",
+  "configuration_schema": {
+    "url": "https://coderabbit.ai/integrations/schema.v2.json",
+    "sha256": "ebd53b7c9603a044833dc850fca22b0d7edf43e2fbe88a08ba138ad8e45501c2",
+    "valid": true
+  },
+  "java_version": "java version \"21.0.9\" 2025-10-21 LTS",
+  "checks": {
+    "main": {
+      "branch": "main",
+      "command": [
+        "python",
+        "ci/evaluate.py",
+        "--candidate",
+        "<demo-repository>",
+        "--trusted",
+        "<reviewed-main-checkout>",
+        "--mode",
+        "acceptance",
+        "--out",
+        "<reports>"
+      ],
+      "mode": "acceptance",
+      "status": "PASS",
+      "seconds": 2.9,
+      "exit_code": 0,
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failed_checks": [],
+      "tested_checkout_sha": "93255d9828f0d60bd87476dd01b8905380e9a9f8",
+      "trusted_policy_sha": "93255d9828f0d60bd87476dd01b8905380e9a9f8",
+      "pr_head_sha": null,
+      "source_sha256": "b9da98f1c7f9d634d73c08691e21ae196a4c871a56e535cbead68b1247fd9a60"
+    },
+    "bug-legacy": {
+      "branch": "demo/review-bug",
+      "command": [
+        "python",
+        "ci/evaluate.py",
+        "--candidate",
+        "<demo-repository>",
+        "--trusted",
+        "<reviewed-main-checkout>",
+        "--mode",
+        "legacy",
+        "--out",
+        "<reports>"
+      ],
+      "mode": "legacy",
+      "status": "PASS",
+      "seconds": 2.516,
+      "exit_code": 0,
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failed_checks": [],
+      "tested_checkout_sha": "676fffd91dbd2150e7a065a0883c5eb9c98f61d9",
+      "trusted_policy_sha": "93255d9828f0d60bd87476dd01b8905380e9a9f8",
+      "pr_head_sha": null,
+      "source_sha256": "1e01d82319c6e6ecc568eca64ced435d6abcf8b9792cdf00824f7132ddd857a1"
+    },
+    "bug": {
+      "branch": "demo/review-bug",
+      "command": [
+        "python",
+        "ci/evaluate.py",
+        "--candidate",
+        "<demo-repository>",
+        "--trusted",
+        "<reviewed-main-checkout>",
+        "--mode",
+        "acceptance",
+        "--out",
+        "<reports>"
+      ],
+      "mode": "acceptance",
+      "status": "FAIL",
+      "seconds": 2.624,
+      "exit_code": 1,
+      "tests": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0,
+      "failed_checks": [
+        {
+          "test": "acceptance(String, String, String)[5]",
+          "kind": "failure",
+          "message": "expected: <45.04> but was: <45.05>"
+        },
+        {
+          "test": "acceptance(String, String, String)[6]",
+          "kind": "failure",
+          "message": "expected: <45.13> but was: <45.14>"
+        },
+        {
+          "test": "integerCentsOracleAndInvariantsFor500Inputs",
+          "kind": "failure",
+          "message": "cents=16405 ==> expected: <147.64> but was: <147.65>"
+        }
+      ],
+      "tested_checkout_sha": "676fffd91dbd2150e7a065a0883c5eb9c98f61d9",
+      "trusted_policy_sha": "93255d9828f0d60bd87476dd01b8905380e9a9f8",
+      "pr_head_sha": null,
+      "source_sha256": "1e01d82319c6e6ecc568eca64ced435d6abcf8b9792cdf00824f7132ddd857a1"
+    },
+    "fixed": {
+      "branch": "demo/review-fixed",
+      "command": [
+        "python",
+        "ci/evaluate.py",
+        "--candidate",
+        "<demo-repository>",
+        "--trusted",
+        "<reviewed-main-checkout>",
+        "--mode",
+        "acceptance",
+        "--out",
+        "<reports>"
+      ],
+      "mode": "acceptance",
+      "status": "PASS",
+      "seconds": 2.717,
+      "exit_code": 0,
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failed_checks": [],
+      "tested_checkout_sha": "151acc80cb3701e3ecefae07e9dffedb237b45e8",
+      "trusted_policy_sha": "93255d9828f0d60bd87476dd01b8905380e9a9f8",
+      "pr_head_sha": null,
+      "source_sha256": "60c8af399c70ef1d80743296a0d57d136dccebc7056cbbeb5d7bc30c5c656050"
+    }
+  },
+  "scope_checks": "Both PR branches change only PriceCalculator.java; fixed PR retains the named-constants refactor."
+}

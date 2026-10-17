@@ -6,7 +6,7 @@
       "Από το ticket έως το merge",
       "Java και CI · Διάλεξη και εργαστήριο 60 λεπτών"
     ],
-    "notes": "Ανοίξτε με την υπόσχεση του μαθήματος: οι φοιτητές θα δουν μια πλήρη αλλαγή, θα ελέγξουν το αποτέλεσμα και στο τέλος θα συζητήσουν ποια μέρη αυτοματοποιούνται περαιτέρω. Το παράδειγμα είναι Java library με μία μέθοδο, όχι πλήρης εφαρμογή πληρωμών. Το τελικό takeaway αφορά την κατασκευή αξιόπιστου pipeline και τη μείωση του ανθρώπινου χρόνου review.",
+    "notes": "Ανοίξτε με την υπόσχεση του μαθήματος: οι φοιτητές θα δουν μια πλήρη αλλαγή, θα ελέγξουν το αποτέλεσμα και στο τέλος θα συζητήσουν ποια μέρη αυτοματοποιούνται περαιτέρω. Το παράδειγμα είναι Java library με μία μέθοδο, όχι πλήρης εφαρμογή πληρωμών. Το τελικό takeaway αφορά την κατασκευή αξιόπιστου pipeline και τη μείωση του ανθρώπινου χρόνου review. Περιλαμβάνεται δωρεάν demo πραγματικού PR review με CodeRabbit σε ξεχωριστό δημόσιο repo. Τα GitHub runs και το review ολοκληρώνονται στην προετοιμασία και παρουσιάζονται με τους πραγματικούς χρόνους τους.",
     "minutes": 1,
     "sources": [],
     "visuals": []
@@ -18,9 +18,9 @@
       "0–15′  Ticket, απαιτήσεις και context",
       "15–31′  AI υλοποίηση και αξιολόγηση στο CI",
       "31–45′  Ποιότητα ελέγχων, μέτρηση και εξήγηση",
-      "45–60′  PR, merge και περαιτέρω αυτοματοποίηση"
+      "45–60′  Peer review, δωρεάν AI review demo, merge και αυτοματοποίηση"
     ],
-    "notes": "Ψηφοφορία: αρκούν compile, πράσινα υπάρχοντα tests, δεύτερο AI που συμφωνεί ή συγκεκριμένα evidence βάσει ticket; Ζητήστε μία αιτιολόγηση. Η σημερινή manual μεταφορά context και η ανθρώπινη έγκριση κάνουν τα στάδια ορατά. Στο τέλος θα τα συνδέσουμε σε loop. Το setup έχει ολοκληρωθεί πριν από τη διάλεξη. Δεν απαιτείται paid coding agent.",
+    "notes": "Ψηφοφορία: αρκούν compile, πράσινα υπάρχοντα tests, δεύτερο AI που συμφωνεί ή συγκεκριμένα evidence βάσει ticket; Ζητήστε μία αιτιολόγηση. Η σημερινή manual μεταφορά context και η ανθρώπινη έγκριση κάνουν τα στάδια ορατά. Στο τέλος θα τα συνδέσουμε σε loop. Το setup έχει ολοκληρωθεί πριν από τη διάλεξη. Δεν απαιτείται paid coding agent. Το instructor demo είναι στα λεπτά 48–52. Η μεταφορά finding στο implementation chat και το commit γίνονται χειροκίνητα. Δεν παρουσιάζουμε αυτόνομο repair agent.",
     "minutes": 3,
     "sources": [],
     "visuals": []
@@ -252,14 +252,48 @@
     "title": "Εργαστήριο 3 Review άλλης ομάδας",
     "kind": "interactive",
     "content": [
-      "5′ με αλλαγή ρόλων",
+      "3′ σε ζεύγη",
       "APPROVE, REQUEST CHANGES ή WAIT",
       "Τρέχον CI αποτέλεσμα και συμφωνημένο scope",
       "Μία αιτιολόγηση με συγκεκριμένο evidence"
     ],
-    "notes": "Το βασικό lab διατηρεί ανθρώπινο ανεξάρτητο reviewer, ώστε οι φοιτητές να μάθουν τι εξετάζεται. Αξιολογούν AC1–AC5, τρέχον run, scope, ειλικρίνεια εξήγησης και τρόπο revert. Αν το CI εκκρεμεί η απόφαση είναι WAIT. Παραδίδουν review ακόμη και αν δεν πρόλαβαν πλήρη λύση. Ο reviewer πρέπει να μπορεί να εξηγήσει το 50.05. Αυτά τα βήματα αργότερα μπορούν να υποστηριχθούν από agentic review και structured reports.",
-    "minutes": 5,
+    "notes": "Το βασικό lab διατηρεί ανθρώπινο ανεξάρτητο reviewer, ώστε οι φοιτητές να μάθουν τι εξετάζεται. Αξιολογούν AC1–AC5, τρέχον run, scope, ειλικρίνεια εξήγησης και τρόπο revert. Αν το CI εκκρεμεί η απόφαση είναι WAIT. Παραδίδουν review ακόμη και αν δεν πρόλαβαν πλήρη λύση. Ο reviewer πρέπει να μπορεί να εξηγήσει το 50.05. Αυτά τα βήματα αργότερα μπορούν να υποστηριχθούν από agentic review και structured reports. Έχει 3 λεπτά: ένα λεπτό ανάγνωση, ένα λεπτό απόφαση, ένα λεπτό ανταλλαγή ρόλων και σύντομο debrief. Το AI review ακολουθεί στο instructor demo.",
+    "minutes": 3,
     "sources": [],
+    "visuals": []
+  },
+  {
+    "title": "Δωρεάν demo: το AI reviewer εξετάζει το PR",
+    "kind": "text_two_items",
+    "content": [
+      "48–50′ · CodeRabbit σε δημόσιο demo repo",
+      "Αλλαγή: named pricing constants, με σκόπιμο rounding bug.",
+      "Ελέγχουμε location, απαίτηση, counterexample και πραγματικό CI.",
+      "Η έξοδος του reviewer είναι υπόθεση μέχρι να επαληθευτεί."
+    ],
+    "notes": "Το demo έχει ξεχωριστό repo με σωστό main. Το PR εξάγει constants και εισάγει σκόπιμα rounding regression. Δεν είναι πραγματικό output μοντέλου. Άνοιξε πριν από το μάθημα το PR με το πραγματικό CodeRabbit finding και το acceptance run. Ζήτησε από την τάξη: ποια απαίτηση παραβιάζεται; Στο 50.05 περιμένουμε 45.04 αλλά το bug δίνει 45.05. Μην εμφανίσεις instructor-authored expected finding ως AI output. Αν δεν υπάρχει πραγματικό finding, δήλωσε ότι ο reviewer το έχασε και σύγκρινε με το deterministic failure. Το CodeRabbit είναι GitHub App, όχι βήμα του evaluator, και δεν υποθέτουμε ότι ανέλυσε όλα τα CI artifacts. Η δωρεάν χρήση αφορά public repo, με όρια υπηρεσίας. Δεν απαιτείται API key ή paid repair agent.",
+    "minutes": 2,
+    "sources": [
+      "https://www.coderabbit.ai/oss",
+      "https://docs.coderabbit.ai/reference/configuration",
+      "https://docs.github.com/en/actions/reference/runners/github-hosted-runners"
+    ],
+    "visuals": []
+  },
+  {
+    "title": "Από το finding σε νέο run και τελικό PR",
+    "kind": "text_four_items",
+    "content": [
+      "48–52′ demo · Review → Repair → CI → PR",
+      "Περνάμε το επαληθευμένο finding στο implementation AI.",
+      "Νέο commit: discount-first rounding και διατήρηση constants.",
+      "Νέο acceptance run, τελικό tested SHA και σύντομο AI PR."
+    ],
+    "notes": "Στα 50–52 δείξε το πραγματικό repair prompt και την απάντηση από free chat. Εσύ αντιγράφεις το Java αρχείο και κάνεις commit/push. Το GitHub Actions τρέχει ξανά και το CodeRabbit έχει incremental review ενεργό. Δείξε το καταγεγραμμένο τελικό run: η locally prepared λύση περνά 27/27, αλλά το GitHub αποτέλεσμα δηλώνεται μόνο αφού εκτελεστεί εκεί. Η τελική περιγραφή PR συνοψίζει το constants refactor, το διορθωμένο bug, actual URLs και SHAs. Η γέφυρα review→implementation είναι χειροκίνητη. Αν περιμένουμε service, δείξε το πραγματικό αποθηκευμένο rehearsal run με σωστή ετικέτα ή μόνο το επαληθευμένο τοπικό fixture. Μην περιμένεις ολόκληρο το latency μέσα στα 4 λεπτά. Το demo-run-record συμπληρώνεται πριν το μάθημα. Το auto-merge παραμένει εκτός demo.",
+    "minutes": 2,
+    "sources": [
+      "https://docs.coderabbit.ai/reference/review-commands"
+    ],
     "visuals": []
   },
   {
@@ -270,8 +304,8 @@
       "Νέο commit ή νέο base απαιτεί επανέλεγχο",
       "Σύνδεσμος run, tested SHA και δυνατότητα revert"
     ],
-    "notes": "Δείξτε ένα έτοιμο correct PR στο demo repo και κάντε merge αν υπάρχει πραγματικό approval. Το PR check του GitHub εξετάζει συνθετικό merge checkout. Branch protection: current required check και dismissal stale approvals. Το Jenkinsfile χρησιμοποιεί τον ίδιο Python evaluator σε disposable worker και reviewed TRUSTED_BASE_SHA. Η job policy στην παραγωγή ελέγχεται χωριστά από το candidate. Το merge δεν σημαίνει ότι ολοκληρώθηκαν deployment και monitoring.",
-    "minutes": 4,
+    "notes": "Δείξτε ένα έτοιμο correct PR στο demo repo και κάντε merge αν υπάρχει πραγματικό approval. Το PR check του GitHub εξετάζει συνθετικό merge checkout. Branch protection: current required check και dismissal stale approvals. Το Jenkinsfile χρησιμοποιεί τον ίδιο Python evaluator σε disposable worker και reviewed TRUSTED_BASE_SHA. Η job policy στην παραγωγή ελέγχεται χωριστά από το candidate. Το merge δεν σημαίνει ότι ολοκληρώθηκαν deployment και monitoring. Η διαφάνεια έχει πλέον 2 λεπτά, στα 52–54. Δείξτε το διορθωμένο PR με το constants refactor, τα πραγματικά reports και ανεξάρτητο approval. Ο instructor κάνει merge μόνο όταν οι προϋποθέσεις έχουν πράγματι καλυφθεί.",
+    "minutes": 2,
     "sources": [
       "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
       "https://www.jenkins.io/doc/book/pipeline/syntax/"
@@ -308,7 +342,7 @@
       "Σύντομο PR από τα τελικά reports",
       "Merge policy και παρακολούθηση"
     ],
-    "notes": "Παρουσιάστε ως απλό editable διάγραμμα διαδικασίας. Ο reviewer agent παίρνει ticket, τελικό diff και πραγματικά reports σε φρέσκο context. Κάθε finding περιέχει θέση, απαίτηση, failure scenario και evidence ή δηλώνεται ως hypothesis. Ο fixing agent διορθώνει επαληθευμένα ευρήματα και το CI τρέχει ξανά. Η Tan αναφέρει χρήση Bugbot και agentic review, αυτόματη διόρθωση πραγματικών bugs και merge. Η περιγραφή PR παράγεται μετά το τελευταίο run ώστε να μην αναφέρει παλιά αποτελέσματα. Το βασικό lab δεν υλοποιεί αυτόν τον AI reviewer μέσα στο CI.",
+    "notes": "Παρουσιάστε ως απλό editable διάγραμμα διαδικασίας. Ο reviewer agent παίρνει ticket, τελικό diff και πραγματικά reports σε φρέσκο context. Κάθε finding περιέχει θέση, απαίτηση, failure scenario και evidence ή δηλώνεται ως hypothesis. Ο fixing agent διορθώνει επαληθευμένα ευρήματα και το CI τρέχει ξανά. Η Tan αναφέρει χρήση Bugbot και agentic review, αυτόματη διόρθωση πραγματικών bugs και merge. Η περιγραφή PR παράγεται μετά το τελευταίο run ώστε να μην αναφέρει παλιά αποτελέσματα. Το βασικό lab δεν υλοποιεί αυτόν τον AI reviewer μέσα στο CI. Το νέο instructor demo έδειξε αυτόματο PR review και χειροκίνητο handoff. Η πλήρης σύνδεση repair και PR updates χωρίς άνθρωπο παραμένει επόμενο βήμα.",
     "minutes": 1,
     "sources": [
       "https://x.com/poteto/status/2085885450468909083",

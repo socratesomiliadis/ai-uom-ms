@@ -11,3 +11,5 @@
 Δώσε στους φοιτητές `student-lab-el.md`, `prompts-en.md` και τον σύνδεσμο του δημοσιευμένου student repository. Το `ai-production-lab.zip` είναι ο κώδικας του student repository. Το `instructor-assets.zip` περιέχει τη λύση, τις πέντε ελαττωματικές παραλλαγές και τα πραγματικά τοπικά reports: κράτησέ το εκτός του student repository πριν από το lab.
 
 Το `lauren-tan-takeaways-el.md` συγκεντρώνει την έρευνα και τις πρωτογενείς πηγές. Το `lecture-preview.png` είναι μία γρήγορη προεπισκόπηση.
+
+Για το νέο δωρεάν instructor demo, διάβασε πρώτα `github-demo-setup-el.md`. Το local demo repo είναι στο `build/ai-review-demo`, και το portable Git bundle είναι το `ai-review-demo.bundle`. Το `demo-prompts-en.md` έχει τα English prompts και το `demo-run-record-el.md` συμπληρώνεται μετά από πραγματικό GitHub rehearsal. Το demo kit περιέχει instructor fixtures και δεν διανέμεται ως student starter.

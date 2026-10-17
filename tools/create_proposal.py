@@ -19,14 +19,14 @@ content='''
 <tr><td>0-15′</td><td>Ticket, acceptance contract, context και αγγλικά prompts</td></tr>
 <tr><td>15-31′</td><td>AI υλοποίηση, πραγματικά CI failures και repair</td></tr>
 <tr><td>31-45′</td><td>Αξιολόγηση των ελέγχων, metrics και σύντομη εξήγηση PR</td></tr>
-<tr><td>45-60′</td><td>Review, merge και περαιτέρω αυτοματοποίηση με AI reviews</td></tr>
+<tr><td>45-60′</td><td>Peer review, δωρεάν demo AI review→repair→CI→PR και merge</td></tr>
 </tbody></table>
 <h2>Συμμετοχή και υλικό</h2>
-<p>Τα ζεύγη δουλεύουν σε έτοιμο Java repository, ανοίγουν PR και διαβάζουν τα αποτελέσματα GitHub Actions. Δίνεται αντίστοιχο Jenkinsfile. Το παράδειγμα περνά τα υπάρχοντα tests αλλά αποτυγχάνει σε οριακές περιπτώσεις, ώστε η αξιολόγηση να γίνει συγκεκριμένη.</p>
+<p>Τα ζεύγη δουλεύουν σε έτοιμο Java repository, ανοίγουν PR και διαβάζουν τα αποτελέσματα GitHub Actions. Δίνεται αντίστοιχο Jenkinsfile. Περιλαμβάνεται instructor demo με δωρεάν CodeRabbit review σε public PR και χειροκίνητο handoff στο implementation AI. Το παράδειγμα περνά τα υπάρχοντα tests αλλά αποτυγχάνει σε οριακές περιπτώσεις, ώστε η αξιολόγηση να γίνει συγκεκριμένη.</p>
 <p>Περιλαμβάνονται παρουσίαση HTML και PDF, οδηγός φοιτητών, αγγλικά prompts, speaker notes και αναλυτικό σενάριο διδάσκοντα. Οι πρακτικές της Lauren Tan και η πρόταση του Karpathy για σαφή εξήγηση συνδέονται με πρωτογενείς πηγές.</p>
 <h2>Προϋποθέσεις</h2>
 <p>Εξοικείωση με Java και CI. Laptop, browser, internet και GitHub account για το lab. Η προτεινόμενη διαδρομή δεν απαιτεί paid AI subscription ή εγκατάσταση Jenkins. Το repository, τα permissions και ένα live CI run προετοιμάζονται πριν από το μάθημα.</p>
-<footer>Το βασικό lab διδάσκει τα στάδια με ανθρώπινο reviewer. Το CI-connected AI review και το auto-merge παρουσιάζονται ως η επόμενη εφαρμογή ενός μετρημένου και ελεγχόμενου pipeline.</footer>
+<footer>Το student lab έχει ανθρώπινο reviewer. Το demo προσθέτει αυτόματο PR review και tests. Η πλήρης σύνδεση repair και το auto-merge είναι επόμενη εφαρμογή του pipeline.</footer>
 '''
 p=ROOT/'build';p.mkdir(exist_ok=True)
 (p/'proposal.html').write_text('<!doctype html><html lang="el"><head><meta charset="utf-8"><title>Πρόταση διάλεξης</title><style>'+fontcss+style+'</style></head><body><main class="page">'+content+'</main></body></html>',encoding='utf-8')

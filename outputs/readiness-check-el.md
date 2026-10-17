@@ -1,4 +1,4 @@
-# Έλεγχος ετοιμότητας — 12 Οκτωβρίου 2026
+# Έλεγχος ετοιμότητας — 18 Οκτωβρίου 2026
 
 Το υλικό έχει ελεγχθεί για πρόβα και αξιολόγηση από τον καθηγητή. Η τοπική επαλήθευση ολοκληρώθηκε. Πριν από ζωντανή διδασκαλία απαιτείται η παρακάτω προετοιμασία στο GitHub της τάξης.
 
@@ -6,7 +6,7 @@
 
 | Έλεγχος | Αποτέλεσμα |
 | --- | --- |
-| Πρόγραμμα | 23 κύριες διαφάνειες, 60 λεπτά μαζί με δραστηριότητες, 3 διαφάνειες παραρτήματος |
+| Πρόγραμμα | 25 κύριες διαφάνειες, 60 λεπτά μαζί με δραστηριότητες, 3 διαφάνειες παραρτήματος |
 | Prompts | Όλες οι οδηγίες προς το AI στα αγγλικά, στα slides, notes, οδηγούς και σενάριο |
 | Γλώσσα και tokens | Πραγματική μέτρηση του συγκεκριμένου ζεύγους: o200k_base 37 EN / 64 EL, cl100k_base 37 EN / 119 EL. Δεν αποτελεί μέτρηση ποιότητας ή συνολικής χρέωσης |
 | Baseline legacy | 3/3 PASS |
@@ -14,10 +14,13 @@
 | Λύση αναφοράς | 27/27 PASS, 0 errors, 0 skipped |
 | Πέντε seeded faults | Και τα πέντε απορρίφθηκαν. Δεν είναι PIT mutation score ή γενικό ποσοστό αξιοπιστίας |
 | Property test | 500 προκαθορισμένα τυχαία inputs με ανεξάρτητο oracle σε ακέραια cents, μέσα σε ένα test |
+| Instructor demo main / repaired PR | 27/27 PASS και στις δύο καταστάσεις, σε νέα τοπική εκτέλεση |
+| Instructor demo bug PR | Legacy 3/3 PASS, acceptance 3 failures σε 27 tests. Διατηρείται μόνο η επιτρεπόμενη Java αλλαγή |
+| CodeRabbit config | Επαληθεύτηκε με το επίσημο JSON schema. Το review στο GitHub παραμένει NOT RUN |
 | GitHub Actions | YAML, triggers, read-only permissions και action commit pins ελέγχθηκαν. Το acceptance check `ticket-evaluation` εκτελεί πάντα acceptance. Το `legacy-demo` είναι ξεχωριστό demonstration check |
-| HTML | 26 διαφάνειες, χωρίς JavaScript errors ή εξωτερικά network requests. Ελέγχθηκαν πλοήγηση, notes, overview, answer reveals, rounding toggle και timers |
+| HTML | 28 διαφάνειες, χωρίς JavaScript errors ή εξωτερικά network requests. Ελέγχθηκαν πλοήγηση, notes, overview, answer reveals, rounding toggle και timers |
 | Γραμματοσειρές | Ενσωματωμένα Noto Sans και Noto Serif, ελεγμένη κάλυψη των ελληνικών χαρακτήρων του deck και φόρτωση όλων των fonts |
-| PDFs | Παρουσίαση 26 σελίδων και πρόταση μίας σελίδας A4. Έγινε οπτικός έλεγχος κάθε σελίδας |
+| PDFs | Παρουσίαση 28 σελίδων και πρόταση μίας σελίδας A4. Έγινε οπτικός έλεγχος κάθε σελίδας |
 
 Οι Java εκτελέσεις έγιναν σε Windows με JDK 21.0.9 και compilation target 17. Το GitHub workflow ζητά Temurin 17. Δεν έχει εκτελεστεί live GitHub Actions ή Jenkins run από το παρόν πακέτο και δεν υπάρχει ήδη δημοσιευμένο repository τάξης.
 
@@ -35,6 +38,13 @@
 
 ## Όρια που εξηγούνται στους φοιτητές
 
-Το βασικό lab χρησιμοποιεί άνθρωπο ως reviewer. Το CI-connected AI review και το production auto-merge παρουσιάζονται ως επόμενο βήμα. Η suite είναι ορατή εκπαιδευτική αξιολόγηση και όχι held-out benchmark. Η αντιγραφή trusted tests σε νέο directory απομονώνει το oracle από τις επιτρεπόμενες αλλαγές του lab, αλλά δεν αποτελεί πλήρες sandbox για κακόβουλο κώδικα. Στην παραγωγή χρειάζονται προστατευμένη υποδομή αξιολόγησης και κατάλληλη merge policy.
+Το βασικό lab χρησιμοποιεί άνθρωπο ως reviewer. Το instructor demo προετοιμάζει αυτόματο CodeRabbit PR review και GitHub tests, με χειροκίνητο handoff προς implementation AI. Το πλήρως αυτόνομο repair και το production auto-merge παρουσιάζονται ως επόμενο βήμα. Η suite είναι ορατή εκπαιδευτική αξιολόγηση και όχι held-out benchmark. Η αντιγραφή trusted tests σε νέο directory απομονώνει το oracle από τις επιτρεπόμενες αλλαγές του lab, αλλά δεν αποτελεί πλήρες sandbox για κακόβουλο κώδικα. Στην παραγωγή χρειάζονται προστατευμένη υποδομή αξιολόγησης και κατάλληλη merge policy.
 
 Τα αγγλικά χρησιμοποιούνται ως πρακτική προεπιλογή. Η ποιότητα ανά γλώσσα εξαρτάται από μοντέλο, task και context· δεν διδάσκεται καθολική υπεροχή των αγγλικών. Η ελληνική εξήγηση δανείζεται αρχές σαφήνειας από το ASD-STE100 και δεν παρουσιάζεται ως πιστοποιημένη εφαρμογή του αγγλικού προτύπου.
+
+
+## Πρόσθετος έλεγχος του free review demo
+
+Το `build/ai-review-demo` και το portable `ai-review-demo.bundle` έχουν σωστό main, branch με seeded rounding regression και prepared repair branch. Δες το `github-demo-setup-el.md` για δημοσίευση, εγκατάσταση CodeRabbit, branch protection και το rehearsal. Τοπικά αποτελέσματα και ακριβείς εντολές ελέγχου αποθηκεύονται στο `demo/verified-results/verification-summary.json`. Αυτά δεν είναι live CodeRabbit findings ή GitHub runs.
+
+Πριν τη διάλεξη συμπλήρωσε το `demo-run-record-el.md` με actual URLs, SHAs, πραγματικό review outcome και χρόνο υπηρεσιών. Κατέβασε τα CI artifacts εντός μίας ημέρας. Το τετράλεπτο demo χρησιμοποιεί προανοιγμένο πραγματικό rehearsal run ώστε η τάξη να μη χρειάζεται να περιμένει όλο το latency. Αν δεν υπάρχει ανεξάρτητος reviewer, δεν δείχνουμε πραγματικό merge.

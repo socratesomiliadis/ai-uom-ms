@@ -17,12 +17,20 @@ for name in ['ai-production-lab', 'instructor-assets']:
                 continue
             archive.write(path, name + '/' + relative.as_posix())
 
+with zipfile.ZipFile(OUT / 'ai-review-demo-kit.zip', 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+    for path in sorted((ROOT / 'demo').rglob('*')):
+        if path.is_file() and path.suffix != '.log':
+            archive.write(path, 'demo/' + path.relative_to(ROOT / 'demo').as_posix())
+    archive.write(OUT / 'ai-review-demo.bundle', 'ai-review-demo.bundle')
+    for name in ['github-demo-setup-el.md', 'demo-prompts-en.md', 'demo-run-record-el.md']:
+        archive.write(OUT / name, name)
+
 with zipfile.ZipFile(OUT / 'lecture-teaching-kit.zip', 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
     for path in sorted(OUT.iterdir()):
         if path.is_file() and path.name != 'lecture-teaching-kit.zip':
             archive.write(path, path.name)
 
-for name in ['ai-production-lab.zip', 'instructor-assets.zip', 'lecture-teaching-kit.zip']:
+for name in ['ai-production-lab.zip', 'instructor-assets.zip', 'ai-review-demo-kit.zip', 'lecture-teaching-kit.zip']:
     with zipfile.ZipFile(OUT / name) as archive:
         assert archive.testzip() is None, name
     print('Created', OUT / name)

@@ -20,6 +20,7 @@ build/
 
 # ZIP files are distribution exports; track their source files instead
 /outputs/*.zip
+/outputs/*.bundle
 
 # Local scratch data and optional editor output
 work/
