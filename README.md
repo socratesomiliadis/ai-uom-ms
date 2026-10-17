@@ -16,7 +16,7 @@ A 60-minute lecture for Software Engineering Master's students familiar with Jav
 | `tools/create_proposal.py` | Builds `build/proposal.html` and writes the email draft |
 | `tools/package.py` | Rebuilds the three ZIP distribution files in `outputs/` |
 
-This is the standalone project in `D:\Projects\Lectures`. Codex scratch files, installed dependencies, build logs and previous Git metadata were excluded from the move.
+This is the standalone project in `D:\Projects\Lectures\ai-uom-ms`. The parent `Lectures` directory can hold other lecture projects. Codex scratch files, installed dependencies, build logs and previous Git metadata were excluded from the move.
 
 Start with `outputs/START-HERE-el.md` and `outputs/readiness-check-el.md`. Open `outputs/ai-production-lecture-el.html` directly in a browser; no server or installation is required to present it.
 
