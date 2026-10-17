@@ -1,0 +1,42 @@
+[
+  {
+    "family": "Noto Sans",
+    "style": "normal",
+    "weight": "400",
+    "file": "noto-sans-normal-400.ttf",
+    "url": "https://fonts.gstatic.com/s/notosans/v42/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyD9A99d.ttf",
+    "bytes": 556328
+  },
+  {
+    "family": "Noto Sans",
+    "style": "normal",
+    "weight": "500",
+    "file": "noto-sans-normal-500.ttf",
+    "url": "https://fonts.gstatic.com/s/notosans/v42/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyDPA99d.ttf",
+    "bytes": 558180
+  },
+  {
+    "family": "Noto Sans",
+    "style": "normal",
+    "weight": "600",
+    "file": "noto-sans-normal-600.ttf",
+    "url": "https://fonts.gstatic.com/s/notosans/v42/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAjBN9d.ttf",
+    "bytes": 558412
+  },
+  {
+    "family": "Noto Sans",
+    "style": "normal",
+    "weight": "700",
+    "file": "noto-sans-normal-700.ttf",
+    "url": "https://fonts.gstatic.com/s/notosans/v42/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAaBN9d.ttf",
+    "bytes": 558012
+  },
+  {
+    "family": "Noto Serif",
+    "style": "italic",
+    "weight": "400",
+    "file": "noto-serif-italic-400.ttf",
+    "url": "https://fonts.gstatic.com/s/notoserif/v33/ga6saw1J5X9T9RW6j9bNfFIMZhhWnFTyNZIQD1-_FXP0RgnaOg9MYBNLg8cP.ttf",
+    "bytes": 476400
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "mode": "acceptance",
+  "status": "FAIL",
+  "seconds": 2.795,
+  "exit_code": 1,
+  "tests": 27,
+  "failures": 5,
+  "errors": 0,
+  "skipped": 0,
+  "failed_checks": [
+    {
+      "test": "acceptance(String, String, String)[3]",
+      "kind": "failure",
+      "message": "expected: <45.00> but was: <50.00>"
+    },
+    {
+      "test": "acceptance(String, String, String)[5]",
+      "kind": "failure",
+      "message": "expected: <45.04> but was: <45.05>"
+    },
+    {
+      "test": "acceptance(String, String, String)[6]",
+      "kind": "failure",
+      "message": "expected: <45.13> but was: <45.14>"
+    },
+    {
+      "test": "acceptance(String, String, String)[18]",
+      "kind": "failure",
+      "message": "expected: <45.00> but was: <50.00>"
+    },
+    {
+      "test": "integerCentsOracleAndInvariantsFor500Inputs",
+      "kind": "failure",
+      "message": "cents=16405 ==> expected: <147.64> but was: <147.65>"
+    }
+  ],
+  "tested_checkout_sha": null,
+  "trusted_policy_sha": null,
+  "pr_head_sha": null,
+  "source_sha256": "88a9f84fb652d1455c3158afe837f1179dbb33ce03de2ca2bf65f18da8b9c5ee"
+}

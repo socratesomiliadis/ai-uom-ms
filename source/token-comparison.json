@@ -1,0 +1,15 @@
+{
+  "english_text": "Restate the acceptance contract. Give expected outputs for 49.99, 50.00, 50.05, and 500.00. Flag ambiguity before changing code.",
+  "greek_text": "Επανεξήγησε το συμβόλαιο αποδοχής. Δώσε αναμενόμενα αποτελέσματα για 49.99, 50.00, 50.05 και 500.00. Δήλωσε ασάφειες πριν αλλάξεις κώδικα.",
+  "counts": {
+    "o200k_base": {
+      "english": 37,
+      "greek": 64
+    },
+    "cl100k_base": {
+      "english": 37,
+      "greek": 119
+    }
+  },
+  "scope": "Plain text instruction only; not a full request, generated response, or quality benchmark."
+}

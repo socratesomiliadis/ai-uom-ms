@@ -1,0 +1,31 @@
+{
+  "mode": "acceptance",
+  "status": "FAIL",
+  "seconds": 2.838,
+  "exit_code": 1,
+  "tests": 27,
+  "failures": 3,
+  "errors": 0,
+  "skipped": 0,
+  "failed_checks": [
+    {
+      "test": "rejectsInvalidSubtotal(String)[1]",
+      "kind": "failure",
+      "message": "Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+    },
+    {
+      "test": "rejectsInvalidSubtotal(String)[2]",
+      "kind": "failure",
+      "message": "Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+    },
+    {
+      "test": "rejectsInvalidSubtotal(String)[3]",
+      "kind": "failure",
+      "message": "Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+    }
+  ],
+  "tested_checkout_sha": null,
+  "trusted_policy_sha": null,
+  "pr_head_sha": null,
+  "source_sha256": "b6e81e50f14dfa84bb7b7e1dbe279ae1555ac70cb694d0e3e002a0afdba0fb3e"
+}

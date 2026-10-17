@@ -1,0 +1,15 @@
+{
+  "mode": "acceptance",
+  "status": "PASS",
+  "seconds": 3.054,
+  "exit_code": 0,
+  "tests": 27,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_checks": [],
+  "tested_checkout_sha": null,
+  "trusted_policy_sha": null,
+  "pr_head_sha": null,
+  "source_sha256": "b9da98f1c7f9d634d73c08691e21ae196a4c871a56e535cbead68b1247fd9a60"
+}

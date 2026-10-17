@@ -1,0 +1,31 @@
+{
+  "mode": "acceptance",
+  "status": "FAIL",
+  "seconds": 2.882,
+  "exit_code": 1,
+  "tests": 27,
+  "failures": 3,
+  "errors": 0,
+  "skipped": 0,
+  "failed_checks": [
+    {
+      "test": "acceptance(String, String, String)[11]",
+      "kind": "failure",
+      "message": "expected: <480.00> but was: <450.00>"
+    },
+    {
+      "test": "acceptance(String, String, String)[12]",
+      "kind": "failure",
+      "message": "expected: <9980.00> but was: <9000.00>"
+    },
+    {
+      "test": "integerCentsOracleAndInvariantsFor500Inputs",
+      "kind": "failure",
+      "message": "cents=83727 ==> expected: <817.27> but was: <753.54>"
+    }
+  ],
+  "tested_checkout_sha": null,
+  "trusted_policy_sha": null,
+  "pr_head_sha": null,
+  "source_sha256": "1507e1b6db323705844698fd0f10135dfa29ab2a540a7239eeb1714233a1cbfb"
+}

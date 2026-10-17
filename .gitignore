@@ -1,0 +1,26 @@
+# Local tools, credentials and editor state
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Compiled code and disposable evaluation workspaces
+target/
+reports/
+.eval-work/
+build/
+*.log
+
+# ZIP files are distribution exports; track their source files instead
+/outputs/*.zip
+
+# Local scratch data and optional editor output
+work/
+qa/

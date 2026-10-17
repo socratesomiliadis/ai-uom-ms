@@ -1,0 +1,15 @@
+{
+  "mode": "legacy",
+  "status": "PASS",
+  "seconds": 2.771,
+  "exit_code": 0,
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "failed_checks": [],
+  "tested_checkout_sha": null,
+  "trusted_policy_sha": null,
+  "pr_head_sha": null,
+  "source_sha256": "88a9f84fb652d1455c3158afe837f1179dbb33ce03de2ca2bf65f18da8b9c5ee"
+}

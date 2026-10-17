@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-12",
+  "workflow_configuration": {
+    "evaluation.yml": "parsed; triggers, permissions and check identity validated",
+    "legacy-demo.yml": "parsed; triggers, permissions and check identity validated"
+  },
+  "action_pins": [
+    {
+      "action": "actions/checkout",
+      "sha": "d23441a48e516b6c34aea4fa41551a30e30af803",
+      "verified": true
+    },
+    {
+      "action": "actions/setup-java",
+      "sha": "b6effb05e454b25005698d916606bdc6ffcbf961",
+      "verified": true
+    },
+    {
+      "action": "actions/upload-artifact",
+      "sha": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "verified": true
+    }
+  ],
+  "java_checks": {
+    "legacy": {
+      "status": "PASS",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "baseline": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 5,
+      "errors": 0,
+      "skipped": 0
+    },
+    "reference": {
+      "status": "PASS",
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "exclusive-threshold": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0
+    },
+    "missing-discount-cap": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    },
+    "missing-normalization": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    },
+    "missing-validation": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    },
+    "round-payable-instead-of-discount": {
+      "status": "FAIL",
+      "tests": 27,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "english_prompt_blocks": {
+    "prompts-en.md": 6,
+    "student-lab-el.md": 4,
+    "instructor-guide-el.md": 3,
+    "deck-speaker-notes-el.md": 6,
+    "rehearsal-script-el.md": 4
+  },
+  "slides": 26,
+  "core_minutes": 60,
+  "verification_scope": "Local Java execution and configuration verification; no live GitHub or Jenkins run has been claimed.",
+  "pdf_checks": {
+    "ai-production-lecture-el.pdf": {
+      "pages": 26,
+      "embedded_fonts": [
+        "AAAAAA+NotoSans-SemiBold",
+        "BAAAAA+NotoSans-Bold",
+        "CAAAAA+NotoSerif-Italic",
+        "DAAAAA+NotoSans-Regular",
+        "EAAAAA+NotoSans-Medium",
+        "FAAAAA+ArialMT",
+        "GAAAAA+ArialMT",
+        "HAAAAA+Consolas"
+      ],
+      "link_annotations": 38
+    },
+    "lecture-proposal-el.pdf": {
+      "pages": 1,
+      "embedded_fonts": [
+        "AAAAAA+NotoSans-Regular",
+        "BAAAAA+NotoSans-SemiBold"
+      ],
+      "link_annotations": 0
+    }
+  },
+  "html_checks": {
+    "errors": [],
+    "network": [],
+    "fontStatus": [
+      {
+        "family": "Noto Sans",
+        "weight": "400",
+        "style": "normal",
+        "status": "loaded"
+      },
+      {
+        "family": "Noto Sans",
+        "weight": "500",
+        "style": "normal",
+        "status": "unloaded"
+      },
+      {
+        "family": "Noto Sans",
+        "weight": "600",
+        "style": "normal",
+        "status": "loaded"
+      },
+      {
+        "family": "Noto Sans",
+        "weight": "700",
+        "style": "normal",
+        "status": "loaded"
+      },
+      {
+        "family": "Noto Serif",
+        "weight": "400",
+        "style": "italic",
+        "status": "loaded"
+      }
+    ],
+    "geometry": [],
+    "printed": 26,
+    "mobile": {
+      "width": 390,
+      "viewport": 390
+    },
+    "all_fonts_loaded_after_explicit_load": true
+  },
+  "visual_review": "All 26 exported deck pages and the single proposal page rendered with Poppler and visually inspected.",
+  "rehearsal_script_words": 4370
+}

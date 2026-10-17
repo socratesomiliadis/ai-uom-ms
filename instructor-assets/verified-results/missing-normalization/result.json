@@ -1,0 +1,31 @@
+{
+  "mode": "acceptance",
+  "status": "FAIL",
+  "seconds": 2.805,
+  "exit_code": 1,
+  "tests": 27,
+  "failures": 3,
+  "errors": 0,
+  "skipped": 0,
+  "failed_checks": [
+    {
+      "test": "acceptance(String, String, String)[13]",
+      "kind": "failure",
+      "message": "expected: <90.00> but was: <100.00>"
+    },
+    {
+      "test": "acceptance(String, String, String)[14]",
+      "kind": "failure",
+      "message": "expected: <90.00> but was: <100.00>"
+    },
+    {
+      "test": "localeDoesNotChangeCouponMeaning",
+      "kind": "failure",
+      "message": "expected: <90.00> but was: <100.00>"
+    }
+  ],
+  "tested_checkout_sha": null,
+  "trusted_policy_sha": null,
+  "pr_head_sha": null,
+  "source_sha256": "315b96bd2ae398ff9ed44c773fbde27e203eb88f66e494a0b3d741d0dc1e58a9"
+}
