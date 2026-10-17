@@ -60,7 +60,7 @@ The starter is deliberately faulty: legacy tests pass, while full acceptance has
 
 This is the complete authoring repository, including instructor solutions. Publish only the contents of `ai-production-lab/` as a separate student repository, without its ignored build folders. The student workflows expect those files at the root of that repository. They intentionally do not run as root workflows in this authoring repository.
 
-Before teaching, provision the GitHub repositories, configure permissions and branch protection, and complete a live CI and AI review rehearsal using `outputs/github-demo-setup-el.md`. Recorded results are local verification evidence, not a claim that a hosted classroom environment already exists. No Git remote is configured by this setup.
+Before teaching, provision the GitHub repositories, configure permissions and branch protection, and complete a live CI and AI review rehearsal using `outputs/github-demo-setup-el.md`. Recorded results are local verification evidence, not a claim that a hosted classroom environment already exists. The authoring repository remains local. The separate instructor demo is published at https://github.com/socratesomiliadis/ai-uom-ms-review-demo; its local `build/ai-review-demo` has that repository as `origin`.
 
 ## Free instructor AI review demo
 
@@ -73,3 +73,5 @@ Regenerate speaker notes with `python tools/build_speaker_notes.py`. Optional br
 For optional local verification, install `PyYAML` and `jsonschema` into `build/verification-deps` and run `python tools/verify_review_demo.py`. It validates the CodeRabbit config against the published schema, checks correct/bug/fixed candidates and records actual JSON results in `demo/verified-results/`. It requires Java, Python, Git and network access for schema/Maven downloads, and does not call any AI service. The local demo repo must exist first.
 
 Complete `outputs/demo-run-record-el.md` after the real GitHub rehearsal. The expected finding is labeled instructor-authored preparation. No actual CodeRabbit output or live GitHub result is fabricated or bundled. CodeRabbit's current public-repository free offer and setup sources are linked in the setup guide; check them before teaching.
+
+The first hosted main acceptance workflow completed successfully: https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39071901442. The three prepared branches are pushed. Install/configure CodeRabbit for the demo repository and open `demo/review-bug` into `main` to begin the actual review rehearsal. No PR or CodeRabbit review has been created by publication.

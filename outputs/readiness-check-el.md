@@ -22,7 +22,7 @@
 | Γραμματοσειρές | Ενσωματωμένα Noto Sans και Noto Serif, ελεγμένη κάλυψη των ελληνικών χαρακτήρων του deck και φόρτωση όλων των fonts |
 | PDFs | Παρουσίαση 28 σελίδων και πρόταση μίας σελίδας A4. Έγινε οπτικός έλεγχος κάθε σελίδας |
 
-Οι Java εκτελέσεις έγιναν σε Windows με JDK 21.0.9 και compilation target 17. Το GitHub workflow ζητά Temurin 17. Δεν έχει εκτελεστεί live GitHub Actions ή Jenkins run από το παρόν πακέτο και δεν υπάρχει ήδη δημοσιευμένο repository τάξης.
+Οι Java εκτελέσεις έγιναν σε Windows με JDK 21.0.9 και compilation target 17. Το GitHub workflow ζητά Temurin 17. Το instructor demo repo [https://github.com/socratesomiliadis/ai-uom-ms-review-demo](https://github.com/socratesomiliadis/ai-uom-ms-review-demo) έχει δημοσιευτεί και το [hosted main acceptance workflow](https://github.com/socratesomiliadis/ai-uom-ms-review-demo/actions/runs/39071901442) πέρασε. Το student repository παραμένει προς δημοσίευση. CodeRabbit review, bug PR, repaired PR και Jenkins run δεν έχουν εκτελεστεί ακόμη.
 
 ## Πριν από το μάθημα
 
